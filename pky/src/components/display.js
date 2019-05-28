@@ -1,11 +1,20 @@
 import React , {Component} from "react";
-import  Input from "/.component.input.js";
-import Search from "/.components.search.js";
+import Search from "./search.js";
+import Input from "./input.js";
 
 class Display extends Component{
 render(){
 
-return (<div className="boxes">
+
+
+return (
+
+<div className="body">
+<Input />
+<Search />
+
+
+  <div className="boxes">
 
 <div className="box-1">
 
@@ -26,6 +35,8 @@ return (<div className="boxes">
 
 
 
+</div>
+</div>
 </div>
 
 )
