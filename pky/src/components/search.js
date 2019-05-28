@@ -5,32 +5,29 @@ class Search extends Component{
       super(props);
 
       this.state = {
-        data: {data: []},
+        data:{},
       };
     };
 
     fetchData() {
       fetch("http://localhost:3030/")
         .then(response => response.json())
-        .then(data =>{
-          this.setState({ data });
-          console.log(this.state.data.data);
-        })
-.catch(error=> console.log(error));
+        .then(data => this.setState((prevState) =>({
+					...prevState.data,
+					data
+				})))
+				.catch(error=> console.log(error));
 
     }
-
-
-
 render(){
   var events= [];
-if (this.state.data.data.length > 0 ){
+if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
  events = this.state.data.data.map( (event, index) =>{
 
       return <div key={index} >
-        <li >{JSON.stringify(event.name.fi)}</li>
-        <li >{JSON.stringify(event.description.intro)}</li>
-        <li >{JSON.stringify(event.location.address.locality)}</li>
+        <li >{event.name.fi}</li>
+        <li >{event.description.intro}</li>
+        <li>{event.location.address.locality}</li>
       </div>
 
 
