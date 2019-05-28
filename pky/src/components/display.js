@@ -10,6 +10,7 @@ render(){
 return (
 
 <div className="body">
+
 <Input />
 <Search />
 

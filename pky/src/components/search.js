@@ -5,16 +5,16 @@ class Search extends Component{
       super(props);
 
       this.state = {
-        data: [],
+        data: {data: []},
       };
     };
 
-    componentDidMount() {
+    fetchData() {
       fetch("http://localhost:3030/")
         .then(response => response.json())
         .then(data =>{
-console.log(data);
-          this.setState({ data: data});
+          this.setState({ data });
+          console.log(this.state.data.data);
         })
 .catch(error=> console.log(error));
 
@@ -22,9 +22,26 @@ console.log(data);
 
 
 
-
 render(){
-return( <div className="button"> <button id="click">Search</button>
+  var events= [];
+if (this.state.data.data.length > 0 ){
+ events = this.state.data.data.map( (event, index) =>{
+
+      return <div key={index} >
+        <li >{JSON.stringify(event.name.fi)}</li>
+        <li >{JSON.stringify(event.description.intro)}</li>
+        <li >{JSON.stringify(event.location.address.locality)}</li>
+      </div>
+
+
+    });
+
+}
+
+return( <div className="button">
+
+  <button id="click" onClick={()=>this.fetchData()}>Search</button>
+  <ul>  {events} </ul>
  </div>
 
 );
