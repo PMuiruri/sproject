@@ -10,12 +10,7 @@ class Search extends Component{
     };
 
     componentDidMount() {
-      fetch('http://open-api.myhelsinki.fi/v1/events/', {
-            mode: 'cors',
-            headers:{
-              'Access-Control-Allow_Origin':'*'
-            }
-          })
+      fetch("http://localhost:3030/")
         .then(response => response.json())
         .then(data =>{
 console.log(data);
@@ -29,10 +24,12 @@ console.log(data);
 
 
 render(){
-return( <div> <button id="click"></button>
+return( <div className="button"> <button id="click">Search</button>
  </div>
 
 );
+
+
 
 
 
