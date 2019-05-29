@@ -28,12 +28,15 @@ class Display extends Component{
 		var events= [];
 		if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
 			events = this.state.data.data.map( (event, index) =>{
-
+				console.log(event);
 				return <div key={index} >
 				<li >Name: {event.name.fi}</li>
 				<li >Description: {event.description.intro}</li>
 				<li>Location: {event.location.address.locality}</li>
-				{console.log(event.description.images[0])}
+				<li>Start Date:{event.event_dates.starting_day}</li>
+				<li>End Date:{event.event_dates.ending_day}</li>
+
+				{console.log(event.event_dates.starting_day)}
 				{event.description.images.length >0 ?
 					(<li><Image imageURL={event.description.images[0].url} /></li>)
 					: null}
