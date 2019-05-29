@@ -1,12 +1,23 @@
-.index {
-    margin: 20px;
+
+.flex-container {
     list-style-type: none;
-    font-size: 20px; 
-    font-family: Tahoma;
-    width: 500px;
-    height: 300px;
-    display: inline-block;
+    margin: 70px;
+    display: flex;
+    float: right;
+    padding: 10px;
+    line-height: 35px;
+    flex-wrap:wrap;
 }
-.image {
-    display: inline-block;
+
+.media_summary {
+    font-size: 15px; 
+    font-family: Tahoma;
+    width: 300px;
+    height: 100px;
+    margin: 20px;  
+}
+
+.media_image {
+    margin-top: 50px;
+   
 }
