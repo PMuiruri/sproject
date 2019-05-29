@@ -1,52 +1,67 @@
 import React , {Component} from "react";
 import Search from "./search.js";
 import Input from "./input.js";
-import Header from "./header.js"
+import Image from "./image.js";
+import Header from './header.js';
+import "../style/display.css";
+
 
 class Display extends Component{
-render(){
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			data:{},
+		};
+	};
 
+	fetchData() {
+		fetch("http://localhost:3030/")
+		.then(response => response.json())
+		.then(data => this.setState((prevState) =>({
+			...prevState.data,
+			data
 
-return (
+		})))
+		.catch(error=> console.log(error));
 
-<div className="body">
-<Header />
-<Input id="event" type="text" placeholder="Please enter text" />
-<Search />
+	}
+	render(){
+		var events= [];
+		if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
+			events = this.state.data.data.map( (event, index) =>{
 
+				return <div key={index} className="flex-container">
+				<div className="media_image">
+				{console.log(event.description.images[0])}
+				{console.log(event)}
+				{console.log(event.event_dates.starting_day)}
+				{event.description.images.length >0 ?
+					(<li className="image"><Image imageURL={event.description.images[0].url} /></li>)
+					: null}
+					</div>
+				<div className="media_summary">
+				<li className="name">Name: {event.name.fi} </li> 
+				<li className="description">Description: {event.description.intro}</li>
+				<li className="location">Location: {event.location.address.locality}</li>
+				<li>Start Date:{(event.event_dates.starting_day).split("T")[0]}</li>
+				{event.event_dates.ending_day != null?
+				<li>End Date:{(event.event_dates.ending_day).split("T")[0]}</li>:  null}
+				</div>
+				</div>
+			});
 
+		}
+		return (
 
+			<div className="body">
+				<Header />
+			<Input id="event" placeholder="please type texts" type="text"/>
+			<Search handleClick={()=>this.fetchData()}/>
 
-  <div className="boxes">
+			<ul className="eventbody"> {events} </ul>
+			</div>
 
-<div className="box-1">
-
-
-
-</div>
-<div className="box-2">
-
-
-
-</div>
-<div className="box-3">
-
-
-
-</div>
-<div className="box-4">
-
-
-
-</div>
-</div>
-</div>
-
-)
-
-}
-
-
-}
-export default Display;
+		)}
+	}
+	export default Display;
