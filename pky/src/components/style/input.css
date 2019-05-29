@@ -1,0 +1,10 @@
+.input {
+  text-align: center;
+}
+
+#event {
+  position: relative;
+  top: 150px;
+  width: 50%;
+  padding: 10px;
+}
