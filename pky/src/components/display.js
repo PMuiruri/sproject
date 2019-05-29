@@ -1,49 +1,55 @@
 import React , {Component} from "react";
 import Search from "./search.js";
 import Input from "./input.js";
+import Image from "./image.js";
+
 
 class Display extends Component{
-render(){
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			data:{},
+		};
+	};
 
+	fetchData() {
+		fetch("http://localhost:3030/")
+		.then(response => response.json())
+		.then(data => this.setState((prevState) =>({
+			...prevState.data,
+			data
 
-return (
+		})))
+		.catch(error=> console.log(error));
 
-<div className="body">
+	}
+	render(){
+		var events= [];
+		if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
+			events = this.state.data.data.map( (event, index) =>{
 
-<Input />
-<Search />
+				return <div key={index} >
+				<li >Name: {event.name.fi}</li>
+				<li >Description: {event.description.intro}</li>
+				<li>Location: {event.location.address.locality}</li>
+				{console.log(event.description.images[0])}
+				{event.description.images.length >0 ?
+					(<li><Image imageURL={event.description.images[0].url} /></li>)
+					: null}
+				</div>
+			});
 
+		}
+		return (
 
-  <div className="boxes">
+			<div className="body">
+			<Input />
+			<Search handleClick={()=>this.fetchData()}/>
 
-<div className="box-1">
+			<ul className="eventbody"> {events} </ul>
+			</div>
 
-
-
-</div>
-<div className="box-2">
-
-
-
-</div>
-<div className="box-3">
-
-
-
-</div>
-<div className="box-4">
-
-
-
-</div>
-</div>
-</div>
-
-)
-
-}
-
-
-}
-export default Display;
+		)}
+	}
+	export default Display;
