@@ -2,6 +2,7 @@ import React , {Component} from "react";
 import Search from "./search.js";
 import Input from "./input.js";
 import Image from "./image.js";
+import "./display.css";
 
 
 class Display extends Component{
@@ -29,13 +30,13 @@ class Display extends Component{
 		if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
 			events = this.state.data.data.map( (event, index) =>{
 
-				return <div key={index} >
-				<li >Name: {event.name.fi}</li>
-				<li >Description: {event.description.intro}</li>
-				<li>Location: {event.location.address.locality}</li>
+				return <div key={index} className="index">
+				<li className="name">Name: {event.name.fi}</li>
+				<li className="description">Description: {event.description.intro}</li>
+				<li className="location">Location: {event.location.address.locality}</li>
 				{console.log(event.description.images[0])}
 				{event.description.images.length >0 ?
-					(<li><Image imageURL={event.description.images[0].url} /></li>)
+					(<li className="image"><Image imageURL={event.description.images[0].url} /></li>)
 					: null}
 				</div>
 			});

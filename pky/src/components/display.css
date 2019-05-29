@@ -1,0 +1,12 @@
+.index {
+    margin: 20px;
+    list-style-type: none;
+    font-size: 20px; 
+    font-family: Tahoma;
+    width: 500px;
+    height: 300px;
+    display: inline-block;
+}
+.image {
+    display: inline-block;
+}
