@@ -7,7 +7,7 @@ render(){
 
 return( <div className="searchbttn">
 
-  <button id="click" onClick={this.props.handleClick} name={this.props.name} >Search</button>
+  <button id="click" onClick={this.props.handleClick}  >{this.props.label}</button>
 
  </div>
 
