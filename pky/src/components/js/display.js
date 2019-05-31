@@ -11,13 +11,12 @@ class Display extends Component{
 		super(props);
 
 		this.state = {
-			data:[],
+			data:{},
 			searchIndex: 0,
 			eventList:[]
 		};
 	};
 	nextResults(){
-		this.fecthData();
 		if(this.state.searchIndex >90){
 			return console.log("no more items");
 		} else{
@@ -25,13 +24,15 @@ class Display extends Component{
 		}
 	}
 	renderData(){
-		let data = this.state.data.data.slice(this.state.searchIndex, 40);
-		console.log(data);
-		this.setState({eventList: data});
-		this.setState({searchIndex: this.state.searchIndex+10});
-		console.log("here: "+ this.state.eventList);
+		console.log(this.state.data.data);
+		console.log(this.state.searchIndex);
+		let data = this.state.data.data.slice(this.state.searchIndex, this.state.searchIndex+20);
+		this.setState({eventList: data, searchIndex: this.state.searchIndex+20});
 	}
-
+	componentDidUpdate(){
+		console.log("here: "+ this.state.eventList + this.state.data.data);
+		window.scrollTo(0,0);
+	}
 	fetchData =()=> {
 		fetch("http://localhost:3030/")
 		.then(response => response.json())
@@ -42,14 +43,15 @@ class Display extends Component{
 				.catch(error=> console.log(error));
 
 			}
-
+componentDidMount(){
+	this.fetchData();
+}
 			render(){
 				var events= [];
-				if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
-					events = this.state.data.data.map( (event, index) =>{
+				if (typeof this.state.eventList !== 'undefined' && this.state.eventList.length > 0 ){
+					events = this.state.eventList.map( (event, index) =>{
 						return <div key={index}	className="container">
 						<div className="media_image">
-
 						{event.description.images.length >0 ?
 							(<li className="image"><Image imageURL={event.description.images[0].url} /></li>)
 							: null}
@@ -70,7 +72,7 @@ class Display extends Component{
 							<div className="body">
 							<Header />
 							<Input id="event" placeholder="please type texts" type="text"/>
-							<Search label="Search" handleClick={()=>this.fetchData()}/>
+							<Search label="Search" handleClick={()=>this.nextResults()}/>
 							<ul className="flex-container"> {events} </ul>
 							<Search label="Next" handleClick={()=>this.nextResults()}/>
 							</div>
