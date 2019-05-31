@@ -17,20 +17,28 @@ class Display extends Component{
 		};
 	};
 	nextResults(){
-		if(this.state.searchIndex >90){
+		if(this.state.searchIndex >80){
+			return console.log("no more items");
+		} else{
+			this.setState({searchIndex: this.state.searchIndex+20})
+			this.renderData();
+		}
+	}
+	prevResults(){
+		this.setState({searchIndex: this.state.searchIndex-20});
+		if(this.state.searchIndex < 0){
 			return console.log("no more items");
 		} else{
 			this.renderData();
 		}
 	}
 	renderData(){
-		console.log(this.state.data.data);
-		console.log(this.state.searchIndex);
+		console.log("old: "+this.state.searchIndex);
 		let data = this.state.data.data.slice(this.state.searchIndex, this.state.searchIndex+20);
-		this.setState({eventList: data, searchIndex: this.state.searchIndex+20});
+		this.setState({eventList: data});
 	}
 	componentDidUpdate(){
-		console.log("here: "+ this.state.eventList + this.state.data.data);
+		console.log("new: "+this.state.searchIndex);
 		window.scrollTo(0,0);
 	}
 	fetchData =()=> {
@@ -74,7 +82,10 @@ componentDidMount(){
 							<Input id="event" placeholder="please type texts" type="text"/>
 							<Search label="Search" handleClick={()=>this.nextResults()}/>
 							<ul className="flex-container"> {events} </ul>
+
 							<Search label="Next" handleClick={()=>this.nextResults()}/>
+							<Search label="Back" handleClick={()=>this.prevResults()}/>
+
 							</div>
 						)}
 					}
