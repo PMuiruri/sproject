@@ -3,8 +3,7 @@ import Search from "./search.js";
 import Input from "./input.js";
 import Header from './header.js';
 import Cards from './cards.js';
-import Button from "react-bootstrap/Button";
-
+import Image from './image.js';
 import "../style/display.css";
 
 
@@ -87,6 +86,7 @@ componentDidMount(){
 								</div>)
 								:null}
 							</div>
+							<div className="background"></div>
 							</div>
 						)}
 					}

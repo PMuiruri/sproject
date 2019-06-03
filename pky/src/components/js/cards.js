@@ -5,6 +5,9 @@ import Search from "./search.js";
 import Image from "./image.js";
 class Cards extends Component{
 
+handleClick(){
+  
+}
   render(){
 return (
 <div>
@@ -19,7 +22,7 @@ return (
       <Card.Text>Start Date:{(this.props.event.event_dates.starting_day).split("T")[0]}</Card.Text>
       {this.props.event.event_dates.ending_day != null?
         <Card.Text>End Date:{(this.props.event.event_dates.ending_day).split("T")[0]}</Card.Text>:  null}
-      <Button variant="primary">Go somewhere</Button>
+      <Button variant="primary" onClick={this.handleClick()}>More Details</Button>
     </Card.Body>
   </Card>
 </div>
