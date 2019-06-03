@@ -1,16 +1,9 @@
-.searchbttn {
-  position: relative;
-  top: 102px;
-  right: 289px;
-  text-align: right;
-  padding: 10px;
-}
-
-.searchbttn button {
-  width: 10%;
-}
-
 #click {
-  height: 37px;
-  text-transform: uppercase;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 30%;
+}
+
+.bbtn {
+  visibility: hidden;
 }
