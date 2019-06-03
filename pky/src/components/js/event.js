@@ -22,8 +22,6 @@ class Event extends Component {
       <Button variant="primary" onClick={this.props.data.info_url}>more</Button>
       </p>
       </Jumbotron>
-
-      
       </div>
     );
   }
