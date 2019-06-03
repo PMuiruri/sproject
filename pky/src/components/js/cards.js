@@ -3,7 +3,9 @@ import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Search from "./search.js";
 import Image from "./image.js";
+import "../style/cards.css"
 class Cards extends Component{
+
 
   render(){
 return (
@@ -12,7 +14,7 @@ return (
 {this.props.event.description.images.length >0 ?
     (<Card.Img variant="top" src={this.props.event.description.images[0].url}  />)
     : null}
-    <Card.Body>
+    <Card.Body className="cards">
       <Card.Title>{this.props.event.name.fi}</Card.Title>
       <Card.Text>{this.props.event.description.intro}</Card.Text>
       <Card.Text>{this.props.event.location.address.locality}</Card.Text>
