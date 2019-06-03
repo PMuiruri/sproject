@@ -1,10 +1,8 @@
 import React , {Component} from "react";
 import Search from "./search.js";
 import Input from "./input.js";
-import Image from "./image.js";
 import Header from './header.js';
 import Cards from './cards.js';
-import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import "../style/display.css";
@@ -75,7 +73,8 @@ componentDidMount(){
 							<Header />
 							<Input id="event" placeholder="please type texts" type="text"/>
 							<Search label="Search" handleClick={()=>this.nextResults()}/>
-							<div><div className="flex-container"> {events}</div>
+							<div>
+							<div className="flex-container"> {events}</div>
 							<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
 							<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
 							</div>
