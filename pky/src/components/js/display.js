@@ -17,14 +17,16 @@ class Display extends Component{
 		this.state = {
 			data:{},
 			searchIndex: 0,
-			eventList:[]
+			eventList:[],
+			isloaded:false
 		};
 	};
 	nextResults(){
 		if(this.state.searchIndex >80){
 			return console.log("no more items");
 		} else{
-			this.setState({searchIndex: this.state.searchIndex+9})
+			this.setState({searchIndex: this.state.searchIndex+9,
+			isloaded:true})
 			this.renderData();
 		}
 	}
@@ -35,6 +37,9 @@ class Display extends Component{
 		} else{
 			this.renderData();
 		}
+	}
+	moreDetails(){
+
 	}
 	renderData(){
 		console.log("old: "+this.state.searchIndex);
@@ -51,9 +56,11 @@ class Display extends Component{
 		.then( data => {
 			console.log(data);
 			this.setState({
-				data: data})})
-				.catch(error=> console.log(error));
+				data: data
+			})
 
+			})
+				.catch(error=> console.log(error));
 			}
 componentDidMount(){
 	this.fetchData();
@@ -61,6 +68,7 @@ componentDidMount(){
 			render(){
 				var events= [];
 					console.log(this.state.eventList);
+
 				if (typeof this.state.eventList !== 'undefined' && this.state.eventList.length > 0 ){
 					events = this.state.eventList.map( (event, index) =>{
 						return <div><Cards key={index} event={event}/>
@@ -74,10 +82,19 @@ componentDidMount(){
 							<Search  className="searchBttn" label="Search" handleClick={()=>this.nextResults()}/>
 							<div>
 							<div className="flex-container"> {events}</div>
+<<<<<<< HEAD
 							<Row className="justify-content-center" >
 							<Search className="bbtn"  label="Back"  handleClick={()=>this.prevResults()}/>
 							<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>
 							</Row>
+=======
+							{this.state.isloaded?(
+								<div>
+								<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
+								<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
+								</div>)
+								:null}
+>>>>>>> 01cd4a8cded2393e64b0c5cc2bf7ce5bd520c7e1
 							</div>
 							</div>
 						)}
