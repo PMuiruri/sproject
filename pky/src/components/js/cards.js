@@ -15,7 +15,7 @@ return (
   <Card className="card" style={{ width: '18rem' }}>
 {this.props.event.description.images.length >0 ?
     (<Card.Img variant="top" src={this.props.event.description.images[0].url}  />)
-    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'159px'}}/>}
+    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'266px'}}/>}
     <Card.Body>
       <Card.Title>{this.props.event.name.fi}</Card.Title>
       <Card.Text>{this.props.event.description.intro}</Card.Text>
