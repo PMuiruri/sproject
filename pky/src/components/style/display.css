@@ -1,24 +1,18 @@
-.flex-container{
-	display:flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin-top: 120px;
+.flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 120px;
 }
+
 .container {
-	margin: 2% 2%;
-	width: 45%;
-	list-style-type: none;
+  margin: 2% 2%;
+  width: 45%;
+  list-style-type: none;
 }
-.media_summary {
-  font-size: 15px;
-	float:right;
-  font-family: Tahoma;
-	line-height: 35px;
-  width: 75%;
-  height: auto;
-}
-.media_image {
-	width: auto;
-	height:auto;
-	float:left;
+
+.card {
+  padding: 10px;
+  margin: 20px;
 }
