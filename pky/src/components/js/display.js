@@ -15,14 +15,16 @@ class Display extends Component{
 		this.state = {
 			data:{},
 			searchIndex: 0,
-			eventList:[]
+			eventList:[],
+			isloaded:false
 		};
 	};
 	nextResults(){
 		if(this.state.searchIndex >80){
 			return console.log("no more items");
 		} else{
-			this.setState({searchIndex: this.state.searchIndex+9})
+			this.setState({searchIndex: this.state.searchIndex+9,
+			isloaded:true})
 			this.renderData();
 		}
 	}
@@ -52,9 +54,11 @@ class Display extends Component{
 		.then( data => {
 			console.log(data);
 			this.setState({
-				data: data})})
-				.catch(error=> console.log(error));
+				data: data
+			})
 
+			})
+				.catch(error=> console.log(error));
 			}
 componentDidMount(){
 	this.fetchData();
@@ -62,6 +66,7 @@ componentDidMount(){
 			render(){
 				var events= [];
 					console.log(this.state.eventList);
+
 				if (typeof this.state.eventList !== 'undefined' && this.state.eventList.length > 0 ){
 					events = this.state.eventList.map( (event, index) =>{
 						return <div><Cards key={index} event={event}/>
@@ -75,8 +80,12 @@ componentDidMount(){
 							<Search label="Search" handleClick={()=>this.nextResults()}/>
 							<div>
 							<div className="flex-container"> {events}</div>
-							<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
-							<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
+							{this.state.isloaded?(
+								<div>
+								<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
+								<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
+								</div>)
+								:null}
 							</div>
 							</div>
 						)}
