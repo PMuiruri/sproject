@@ -8,6 +8,21 @@ import {Link} from 'react-router-dom';
 
 
 class Header extends Component{
+  fetchData =()=> {
+    fetch("http://localhost:3030/")
+    .then(response => response.json())
+    .then( data => {
+      console.log(data);
+      this.setState({
+        data: data})
+      })
+        .catch(error=> console.log(error));
+
+      }
+componentDidMount(){
+  this.fetchData();
+
+}
 
 render(){
 return(
@@ -27,11 +42,6 @@ return(
   </Navbar.Collapse>
 
 </Navbar>
-<Input id="event" placeholder="please type texts" type="text"/>
-<Search label="Search" handleClick={()=>this.nextResults()}/>
-
-
-
 
 </div>
 

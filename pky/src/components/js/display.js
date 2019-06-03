@@ -1,8 +1,9 @@
 import React , {Component} from "react";
 import Search from "./search.js";
-
+import Input from "./input.js";
 import Image from "./image.js";
 import Header from './header.js';
+import Cards from './cards.js';
 import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
@@ -59,33 +60,22 @@ componentDidMount(){
 }
 			render(){
 				var events= [];
+					console.log(this.state.eventList);
 				if (typeof this.state.eventList !== 'undefined' && this.state.eventList.length > 0 ){
 					events = this.state.eventList.map( (event, index) =>{
-						return <Card key={index} style={{ width: '18rem' }}>
-						{event.description.images.length >0 ?
-							(<Card.Img variant="top" src={event.description.images[0].url}  />)
-							: null}
-					    <Card.Body>
-					      <Card.Title>{event.name.fi}</Card.Title>
-					      <Card.Text>{event.description.intro}</Card.Text>
-								<Card.Text>{event.location.address.locality}</Card.Text>
-								<Card.Text>Start Date:{(event.event_dates.starting_day).split("T")[0]}</Card.Text>
-								{event.event_dates.ending_day != null?
-									<Card.Text>End Date:{(event.event_dates.ending_day).split("T")[0]}</Card.Text>:  null}
-					      <Button variant="primary">Go somewhere</Button>
-					    </Card.Body>
-					  </Card>
+						return <div><Cards key={index} event={event}/>
+						</div>
 							});
 						}
 						return (
 							<div className="body">
 							<Header />
-							<ul className="flex-container"> {events}
-
-
-							<Search label="Back" className="bbtn" handleClick={()=>this.nextResults()}/>
-							<Search label="Next" className= "bbtn" handleClick={()=>this.prevResults()}/>
-</ul>
+							<Input id="event" placeholder="please type texts" type="text"/>
+							<Search label="Search" handleClick={()=>this.nextResults()}/>
+							<div><div className="flex-container"> {events}</div>
+							<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
+							<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
+							</div>
 							</div>
 						)}
 					}
