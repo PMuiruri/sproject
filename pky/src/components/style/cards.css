@@ -1,3 +1,6 @@
-.cards {
-  display: grid;
+
+.card {
+  padding: 10px;
+  margin: 20px;
+  justify-content: center;
 }
