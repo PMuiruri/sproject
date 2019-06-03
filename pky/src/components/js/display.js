@@ -82,19 +82,12 @@ componentDidMount(){
 							<Search  className="searchBttn" label="Search" handleClick={()=>this.nextResults()}/>
 							<div>
 							<div className="flex-container"> {events}</div>
-<<<<<<< HEAD
-							<Row className="justify-content-center" >
-							<Search className="bbtn"  label="Back"  handleClick={()=>this.prevResults()}/>
-							<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>
-							</Row>
-=======
 							{this.state.isloaded?(
-								<div>
-								<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
-								<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
-								</div>)
-								:null}
->>>>>>> 01cd4a8cded2393e64b0c5cc2bf7ce5bd520c7e1
+								<Row className="justify-content-center" >
+								<Search className="bbtn"  label="Back"  handleClick={()=>this.prevResults()}/>
+								<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>
+								</Row>)
+									:null}
 							</div>
 							</div>
 						)}
