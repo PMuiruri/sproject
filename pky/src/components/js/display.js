@@ -32,6 +32,9 @@ class Display extends Component{
 			this.renderData();
 		}
 	}
+	moreDetails(){
+		
+	}
 	renderData(){
 		console.log("old: "+this.state.searchIndex);
 		let data = this.state.data.data.slice(this.state.searchIndex, this.state.searchIndex+20);
@@ -72,6 +75,7 @@ componentDidMount(){
 							<li>Start Date:{(event.event_dates.starting_day).split("T")[0]}</li>
 							{event.event_dates.ending_day != null?
 								<li>End Date:{(event.event_dates.ending_day).split("T")[0]}</li>:  null}
+								<button onClick={()=>this.moreDetails}>more details</button>
 								</div>
 								</div>
 							});
