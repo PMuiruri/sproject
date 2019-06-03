@@ -3,7 +3,10 @@ import Search from "./search.js";
 import Input from "./input.js";
 import Header from './header.js';
 import Cards from './cards.js';
-import Image from './image.js';
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row"
+import "../style/search.css"
+
 import "../style/display.css";
 
 
@@ -76,15 +79,15 @@ componentDidMount(){
 							<div className="body">
 							<Header />
 							<Input id="event" placeholder="please type texts" type="text"/>
-							<Search label="Search" handleClick={()=>this.nextResults()}/>
+							<Search  className="searchBttn" label="Search" handleClick={()=>this.nextResults()}/>
 							<div>
 							<div className="flex-container"> {events}</div>
 							{this.state.isloaded?(
-								<div>
-								<Search label="Back" className="bbtn" handleClick={()=>this.prevResults()}/>
-								<Search label="Next" className= "bbtn" handleClick={()=>this.nextResults()}/>
-								</div>)
-								:null}
+								<Row className="justify-content-center" >
+								<Search className="bbtn"  label="Back"  handleClick={()=>this.prevResults()}/>
+								<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>
+								</Row>)
+									:null}
 							</div>
 							<div className="background"></div>
 							</div>

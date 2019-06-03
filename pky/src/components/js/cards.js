@@ -3,10 +3,11 @@ import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Search from "./search.js";
 import Image from "./image.js";
+import "../style/cards.css"
 class Cards extends Component{
 
 handleClick(){
-  
+
 }
   render(){
 return (

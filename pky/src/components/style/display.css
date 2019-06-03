@@ -17,12 +17,14 @@
   padding: 10px;
   margin: 20px;
 }
-.background{
-  overflow: hidden;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position:left;
-  background-image: url('/images/Asset 3.png');
-  height: 350px;
-  width:100%;
+
+.bbtn {
+  margin: 20px;
+  width: 150px;
+}
+
+.searchBttn {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 150px;
 }
