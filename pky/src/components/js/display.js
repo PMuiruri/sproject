@@ -3,8 +3,8 @@ import Search from "./search.js";
 import Input from "./input.js";
 import Header from './header.js';
 import Cards from './cards.js';
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row"
+import Row from "react-bootstrap/Row";
+import Event from "./event.js"
 import "../style/search.css"
 
 import "../style/display.css";
@@ -18,7 +18,9 @@ class Display extends Component{
 			data:{},
 			searchIndex: 0,
 			eventList:[],
-			isloaded:false
+			isloaded:false,
+			singleEvent:false,
+			eventId:0
 		};
 	};
 	nextResults(){
@@ -38,8 +40,8 @@ class Display extends Component{
 			this.renderData();
 		}
 	}
-	moreDetails(){
-
+	moreDetails = (id) =>{
+		this.setState({ singleEvent: true, eventId:id});
 	}
 	renderData(){
 		console.log("old: "+this.state.searchIndex);
@@ -67,14 +69,22 @@ componentDidMount(){
 }
 			render(){
 				var events= [];
-					console.log(this.state.eventList);
-
+				if(this.state.singleEvent === false){
 				if (typeof this.state.eventList !== 'undefined' && this.state.eventList.length > 0 ){
 					events = this.state.eventList.map( (event, index) =>{
-						return <div><Cards key={index} event={event}/>
+						return <div><Cards key={index} event={event} moreDetails={this.moreDetails}/>
 						</div>
-							});
-						}
+					});
+			}}
+				else{
+					if(typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0){
+					let	eventS = this.state.data.data.filter(obj => {
+  					return obj.id === this.state.eventId;
+					});
+					console.log(eventS);
+				 	events = <Event data={eventS[0]}/>
+				 	}
+				}
 						return (
 							<div className="body">
 							<Header />
