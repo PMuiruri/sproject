@@ -1,13 +1,12 @@
 import React, {Component} from "react";
 import {Card} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Search from "./search.js";
-import Image from "./image.js";
 import "../style/cards.css"
 class Cards extends Component{
 
-handleClick(){
-
+handleClick=()=> {
+	let id= this.props.event.id;
+	this.props.moreDetails(id);
 }
   render(){
 return (
@@ -15,7 +14,7 @@ return (
   <Card className="card" style={{ width: '18rem' }}>
 {this.props.event.description.images.length >0 ?
     (<Card.Img variant="top" src={this.props.event.description.images[0].url}  />)
-    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'266px'}}/>}
+    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'226px'}}/>}
     <Card.Body>
       <Card.Title>{this.props.event.name.fi}</Card.Title>
       <Card.Text>{this.props.event.description.intro}</Card.Text>
@@ -23,7 +22,7 @@ return (
       <Card.Text>Start Date:{(this.props.event.event_dates.starting_day).split("T")[0]}</Card.Text>
       {this.props.event.event_dates.ending_day != null?
         <Card.Text>End Date:{(this.props.event.event_dates.ending_day).split("T")[0]}</Card.Text>:  null}
-      <Button variant="primary" onClick={this.handleClick()}>More Details</Button>
+      <Button variant="primary" onClick={this.handleClick}>More Details</Button>
     </Card.Body>
   </Card>
 </div>

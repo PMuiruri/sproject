@@ -1,9 +1,7 @@
 import React , {Component} from "react";
 import "../style/header.css"
-import Input from "./input.js";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Search from "./search.js";
 import {Link} from 'react-router-dom';
 class Header extends Component{
 
