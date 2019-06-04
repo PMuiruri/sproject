@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
 
 
@@ -26,7 +26,7 @@ class ControlledCarousel extends React.Component {
     const { index, direction } = this.state;
 console.log(this.props.carouselItems);
     return (
-      <Carousel 
+      <Carousel
         activeIndex={index}
         direction={direction}
         onSelect={this.handleSelect}
@@ -34,16 +34,14 @@ console.log(this.props.carouselItems);
       >
       {this.props.carouselItems.map((event , index)=>{
         return(   <Carousel.Item key={index}>
-
           {event.description.images.length >0 ?
             (  <img
                 className="d-block w-100"
                 src={event.description.images[0].url}
-
-
+                style={{width:'auto', height:'500px'}}
+                alt=''
               />)
-      : <img  className="d-block w-100" src="images/altImage.png" />}
-
+      : <img  className="d-block w-100" src="images/altImage.png" alt='' />}
             <Carousel.Caption>
               <h3>{event.name.fi}</h3>
               <p>{event.description.intro}</p>

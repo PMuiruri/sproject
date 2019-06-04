@@ -26,3 +26,7 @@
   width: 100%;
   z-index: -2;
 }
+.carousel{
+  height: 360px;
+  padding: 2%;
+}

@@ -5,9 +5,7 @@ import Search from "./search.js";
 import Input from "./input.js";
 import Header from './header.js';
 import Cards from './cards.js';
-import Links from "./links.js";
 import ControlledCarousel from "./carousel.js";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row"
 import Event from "./event.js"
 import "../style/search.css"
@@ -111,7 +109,7 @@ class Display extends Component {
             <Search className = "bbtn" label = "Back" handleClick = {() => this.prevResults()}/>
 						<Search label = "Next" className = "bbtn" handleClick = {() => this.nextResults()}/>
 						</Row>): null}
-						<div>
+						<div className="carousel">
 							<ControlledCarousel carouselItems={carousels} />
 						</div>
 					</div>

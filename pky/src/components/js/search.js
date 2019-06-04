@@ -5,9 +5,6 @@ import Button from "react-bootstrap/Button"
 
 
 class Search extends Component{
-  constructor(props){
-    super(props);
-  }
 render(){
 return(
 <ButtonToolbar>
