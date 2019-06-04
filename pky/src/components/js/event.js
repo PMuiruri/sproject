@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Jumbotron, Button} from 'react-bootstrap';
+import {Jumbotron} from 'react-bootstrap';
+import EventMap from './eventMap.js';
 
 
 class Event extends Component {
@@ -18,10 +19,9 @@ class Event extends Component {
       <p>
       {this.props.data.tags[0].name}
       </p>
-      <p>
-      <Button variant="primary" onClick={this.props.data.info_url}>more</Button>
-      </p>
+
       </Jumbotron>
+      <EventMap data={this.props.data.location}/>
       </div>
     );
   }
