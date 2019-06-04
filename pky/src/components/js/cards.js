@@ -7,7 +7,8 @@ import "../style/cards.css"
 class Cards extends Component{
 
 handleClick(){
-
+  let id ={id:this.props.event.id};
+  this.props.moreDetails(id);
 }
   render(){
 return (
@@ -15,7 +16,7 @@ return (
   <Card className="card" style={{ width: '18rem' }}>
 {this.props.event.description.images.length >0 ?
     (<Card.Img variant="top" src={this.props.event.description.images[0].url}  />)
-    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'266px'}}/>}
+    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'226px'}}/>}
     <Card.Body>
       <Card.Title>{this.props.event.name.fi}</Card.Title>
       <Card.Text>{this.props.event.description.intro}</Card.Text>

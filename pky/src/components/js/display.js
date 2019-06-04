@@ -38,8 +38,8 @@ class Display extends Component{
 			this.renderData();
 		}
 	}
-	moreDetails(){
-
+	moreDetails(id){
+		
 	}
 	renderData(){
 		console.log("old: "+this.state.searchIndex);
