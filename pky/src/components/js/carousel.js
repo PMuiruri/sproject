@@ -38,16 +38,13 @@ console.log(this.props.carouselItems);
             (  <img
                 className="d-block w-100"
                 src={event.description.images[0].url}
-                style={{width:'auto', height:'500px'}}
                 alt=''
               />)
       : <img  className="d-block w-100" src="images/altImage.png" alt='' />}
             <Carousel.Caption>
-              <h3>{event.name.fi}</h3>
-              <p>{event.description.intro}</p>
+              <h2>{event.name.fi}</h2>
               <p>{event.location.address.locality}</p>
               <p>{event.event_dates.starting_day} </p>
-              <p>{event.event_dates.ending_day}</p>
             </Carousel.Caption>
           </Carousel.Item>)
 
