@@ -1,26 +1,28 @@
-
 .flex-container {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left:5%
+  margin-left: 5%
 }
+
 .bbtn {
   margin: 20px;
   width: 150px;
 }
+
 .searchBttn {
   margin: 0 auto;
   margin-top: 15px;
   width: 150px;
 }
-.background{
+
+.background {
   background-size: contain;
   background-repeat: no-repeat;
-  background-position:left;
+  background-position: left;
   background-image: url('/images/Asset 3.png');
   height: 350px;
-  width:100%;
+  width: 100%;
   z-index: -2;
 }

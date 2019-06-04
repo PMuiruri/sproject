@@ -6,9 +6,9 @@ import Image from "./image.js";
 import "../style/cards.css"
 class Cards extends Component{
 
-handleClick(){
-  let id ={id:this.props.event.id};
-  this.props.moreDetails(id);
+handleClick=()=> {
+	let id= this.props.event.id;
+	this.props.moreDetails(id);
 }
   render(){
 return (
@@ -24,7 +24,7 @@ return (
       <Card.Text>Start Date:{(this.props.event.event_dates.starting_day).split("T")[0]}</Card.Text>
       {this.props.event.event_dates.ending_day != null?
         <Card.Text>End Date:{(this.props.event.event_dates.ending_day).split("T")[0]}</Card.Text>:  null}
-      <Button variant="primary" onClick={this.handleClick()}>More Details</Button>
+      <Button variant="primary" onClick={this.handleClick}>More Details</Button>
     </Card.Body>
   </Card>
 </div>

@@ -8,12 +8,12 @@ class Event extends Component {
     return (
       <div>
       <Jumbotron>
-      <h1>{this.props.data.Title}</h1>
+      <h1>{this.props.data.name.fi}</h1>
       <p>
-      {this.props.data.description}
+      	<div dangerouslySetInnerHTML={{__html: this.props.data.description.body}}></div>
       </p>
       <p>
-      {this.props.data.street_address}
+      {this.props.data.location.address.street_address}
       </p>
       <p>
       {this.props.data.tags[0].name}
