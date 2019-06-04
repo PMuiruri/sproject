@@ -3,11 +3,14 @@ import Search from "./search.js";
 import Input from "./input.js";
 import Header from './header.js';
 import Cards from './cards.js';
+import Links from "./links.js";
+import ControlledCarousel from "./carousel.js";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row"
 import "../style/search.css"
-
 import "../style/display.css";
+import "../style/carousel.css";
+
 
 
 class Display extends Component{
@@ -66,6 +69,7 @@ componentDidMount(){
 	this.fetchData();
 }
 			render(){
+				var carousels=[];
 				var events= [];
 					console.log(this.state.eventList);
 
@@ -74,13 +78,25 @@ componentDidMount(){
 						return <div><Cards key={index} event={event}/>
 						</div>
 							});
+
 						}
+
+if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length > 0 ){
+	carousels= this.state.data.data.slice(0,3)
+}
+
+
 						return (
 							<div className="body">
+
 							<Header />
+							<Links />
 							<Input id="event" placeholder="please type texts" type="text"/>
+
 							<Search  className="searchBttn" label="Search" handleClick={()=>this.nextResults()}/>
-							<div>
+
+
+
 							<div className="flex-container"> {events}</div>
 							{this.state.isloaded?(
 								<Row className="justify-content-center" >
@@ -88,8 +104,13 @@ componentDidMount(){
 								<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>
 								</Row>)
 									:null}
+									<div>
+										<ControlledCarousel carouselItems={carousels} />
+									</div>
+
 							</div>
-							</div>
+
+
 						)}
 					}
 					export default Display;

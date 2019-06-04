@@ -27,3 +27,10 @@
   margin-top: 15px;
   width: 150px;
 }
+
+.body {}
+
+.top-section {
+  background-image: url("");
+  background-size: auto;
+}
