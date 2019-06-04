@@ -98,7 +98,7 @@ if (typeof this.state.data.data !== 'undefined' && this.state.data.data.length >
 
 
 							<div className="flex-container"> {events}</div>
-							{this.state.isloaded?(
+								{this.state.isloaded?(
 								<Row className="justify-content-center" >
 								<Search className="bbtn"  label="Back"  handleClick={()=>this.prevResults()}/>
 								<Search label="Next" className="bbtn"  handleClick={()=>this.nextResults()}/>

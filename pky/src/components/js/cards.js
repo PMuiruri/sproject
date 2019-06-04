@@ -6,14 +6,16 @@ import Image from "./image.js";
 import "../style/cards.css"
 class Cards extends Component{
 
+handleClick(){
 
+}
   render(){
 return (
 <div>
-  <Card style={{ width: '18rem' }}>
+  <Card className="card" style={{ width: '18rem' }}>
 {this.props.event.description.images.length >0 ?
     (<Card.Img variant="top" src={this.props.event.description.images[0].url}  />)
-    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'159px'}}/>}
+    : <Card.Img variant="top" src="images/altImage.png" style={{width:'266px', height:'266px'}}/>}
     <Card.Body>
       <Card.Title>{this.props.event.name.fi}</Card.Title>
       <Card.Text>{this.props.event.description.intro}</Card.Text>
@@ -21,7 +23,7 @@ return (
       <Card.Text>Start Date:{(this.props.event.event_dates.starting_day).split("T")[0]}</Card.Text>
       {this.props.event.event_dates.ending_day != null?
         <Card.Text>End Date:{(this.props.event.event_dates.ending_day).split("T")[0]}</Card.Text>:  null}
-      <Button variant="primary">Go somewhere</Button>
+      <Button variant="primary" onClick={this.handleClick()}>More Details</Button>
     </Card.Body>
   </Card>
 </div>

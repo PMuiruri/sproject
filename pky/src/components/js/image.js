@@ -5,7 +5,7 @@ render(){
 return (
 
 	<div className="body">
-		<img src={this.props.imageURL} alt="event_image" style={{width:'122px', height:'122px'}}/>
+		<img src={this.props.imageURL} alt="event_image" style={{width:'auto', height:'auto'}}/>
 	</div>
 
 )}
