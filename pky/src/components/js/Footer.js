@@ -15,22 +15,17 @@ class FooterPagePro extends Component {
               </MDBCol>
               <MDBCol md="2" className="b-3">
                 <h6 className="title font-weight-bold">
-                  <a href="#!">Products</a>
+                  <a href="#!">Contact us</a>
                 </h6>
               </MDBCol>
               <MDBCol md="2" className="b-3">
                 <h6 className="title font-weight-bold">
-                  <a href="#!">Awards</a>
+                  <a href="#!">Privacy</a>
                 </h6>
               </MDBCol>
               <MDBCol md="2" className="b-3">
                 <h6 className="title font-weight-bold">
                   <a href="#!">Help</a>
-                </h6>
-              </MDBCol>
-              <MDBCol md="2" className="b-3">
-                <h6 className="title font-weight-bold">
-                  <a href="#!">Contact</a>
                 </h6>
               </MDBCol>
             </MDBRow>
