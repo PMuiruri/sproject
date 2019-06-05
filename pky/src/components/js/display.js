@@ -6,9 +6,10 @@ import Cards from "./cards.js";
 import ControlledCarousel from "./carousel.js";
 import Row from "react-bootstrap/Row";
 import Event from "./event.js";
-import Link from "./links.js";
+import Links from "./links.js";
 import "../style/search.css";
 import "../style/display.css";
+import "../style/carousel.css";
 import "../style/carousel.css";
 
 class Display extends Component {
@@ -119,7 +120,7 @@ class Display extends Component {
     return (
       <div className="body">
         <Header />
-        <Link />
+        <Links />
         <Input id="event" placeholder="please type texts" type="text" />
         <Search
           className="searchBttn"
