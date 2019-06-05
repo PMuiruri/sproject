@@ -133,9 +133,9 @@ class Display extends Component {
             className="searchBttn"
             label="Search"
             handleClick={() => this.nextResults()}
-          />{" "}
+          />
           <div>
-            <div className="flex-container"> {events} </div>{" "}
+            <div className="flex-container"> {events} </div>
             {this.state.isloaded ? (
               <Row className="justify-content-center">
                 <Search
