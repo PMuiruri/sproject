@@ -7,6 +7,7 @@ import ControlledCarousel from "./carousel.js";
 import Row from "react-bootstrap/Row";
 import Event from "./event.js";
 import Links from "./links.js";
+import FooterPagePro from "./Footer.js";
 import "../style/search.css";
 import "../style/display.css";
 import "../style/carousel.css";
@@ -116,40 +117,43 @@ class Display extends Component {
       this.state.data.data.length > 0
     ) {
       carousels = this.state.data.data.slice(0, 3);
-    }
-    return (
-      <div className="body">
-        <Header />
-        <Links />
-        <Input id="event" placeholder="please type texts" type="text" />
-        <Search
-          className="searchBttn"
-          label="Search"
-          handleClick={() => this.nextResults()}
-        />{" "}
-        <div>
-          <div className="flex-container"> {events} </div>{" "}
-          {this.state.isloaded ? (
-            <Row className="justify-content-center">
-              <Search
-                className="bbtn"
-                label="Back"
-                handleClick={() => this.prevResults()}
-              />
-              <Search
-                label="Next"
-                className="bbtn"
-                handleClick={() => this.nextResults()}
-              />
-            </Row>
-          ) : (
-            <div className="carousel">
-              <ControlledCarousel carouselItems={carousels} />
-            </div>
-          )}
+    
+      return (
+        <div className="body">
+          <Header />
+          <Links />
+          <Input id="event" placeholder="please type texts" type="text" />
+          <Search
+            className="searchBttn"
+            label="Search"
+            handleClick={() => this.nextResults()}
+          />
+          <div>
+            <div className="flex-container"> {events} </div>
+            {this.state.isloaded ? (
+              <Row className="justify-content-center">
+                <Search
+                  className="bbtn"
+                  label="Back"
+                  handleClick={() => this.prevResults()}
+                />
+                <Search
+                  label="Next"
+                  className="bbtn"
+                  handleClick={() => this.nextResults()}
+                />
+              </Row>
+            ) : (
+              <div className="carousel">
+                <ControlledCarousel carouselItems={carousels} />
+              </div>
+            )}
+          </div>
+          <FooterPagePro />
         </div>
-      </div>
-    );
+      );
+    }
+    return <div />;
   }
 }
 export default Display;

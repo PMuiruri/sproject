@@ -1,6 +1,7 @@
-.body-links {
+.link-container {
   justify-content: center;
   margin-top: 100px;
+  display: flex;
 }
 
 .body-links Button {
