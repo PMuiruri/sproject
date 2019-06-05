@@ -119,7 +119,10 @@ class Display extends Component {
     return (
       <div className="body">
         <Header />
+<<<<<<< HEAD
         <Link />
+=======
+>>>>>>> master
         <Input id="event" placeholder="please type texts" type="text" />
         <Search
           className="searchBttn"
@@ -141,11 +144,18 @@ class Display extends Component {
                 handleClick={() => this.nextResults()}
               />
             </Row>
+<<<<<<< HEAD
           ) : (
             <div className="carousel">
               <ControlledCarousel carouselItems={carousels} />
             </div>
           )}
+=======
+          ) : null}
+          <div className="carousel">
+            <ControlledCarousel carouselItems={carousels} />
+          </div>
+>>>>>>> master
         </div>
       </div>
     );
