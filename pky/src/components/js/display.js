@@ -1,19 +1,15 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 import Search from "./search.js";
 import Input from "./input.js";
-import Header from './header.js';
-import Cards from './cards.js';
-import Links from "./links.js";
+import Header from "./header.js";
+import Cards from "./cards.js";
 import ControlledCarousel from "./carousel.js";
-import Row from "react-bootstrap/Row"
-import Event from "./event.js"
-import "../style/search.css"
+import Row from "react-bootstrap/Row";
+import Event from "./event.js";
+import "../style/search.css";
 import "../style/display.css";
 import "../style/carousel.css";
-
-
+import "../style/carousel.css";
 
 class Display extends Component {
   constructor(props) {
@@ -27,7 +23,7 @@ class Display extends Component {
       singleEvent: false,
       eventId: 0
     };
-  };
+  }
   nextResults() {
     if (this.state.searchIndex > 80) {
       return console.log("no more items");
@@ -35,7 +31,7 @@ class Display extends Component {
       this.setState({
         searchIndex: this.state.searchIndex + 9,
         isloaded: true
-      })
+      });
       this.renderData();
     }
   }
@@ -49,15 +45,18 @@ class Display extends Component {
       this.renderData();
     }
   }
-  moreDetails = (id) => {
+  moreDetails = id => {
     this.setState({
       singleEvent: true,
       eventId: id
     });
-  }
+  };
   renderData() {
     console.log("old: " + this.state.searchIndex);
-    let data = this.state.data.data.slice(this.state.searchIndex, this.state.searchIndex + 9);
+    let data = this.state.data.data.slice(
+      this.state.searchIndex,
+      this.state.searchIndex + 9
+    );
     this.setState({
       eventList: data
     });
@@ -71,9 +70,10 @@ class Display extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        this.setState({data: data})})
-				.catch(error => console.log(error));
-}
+        this.setState({ data: data });
+      })
+      .catch(error => console.log(error));
+  };
   componentDidMount() {
     this.fetchData();
   }
