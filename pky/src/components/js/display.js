@@ -8,6 +8,7 @@ import Cards from './cards.js';
 import ControlledCarousel from "./carousel.js";
 import Row from "react-bootstrap/Row"
 import Event from "./event.js"
+import Links from './links.js';
 import "../style/search.css"
 import "../style/display.css";
 import "../style/carousel.css";
@@ -99,6 +100,7 @@ class Display extends Component {
 		}
     return ( <div className = "body" >
       <Header / >
+      <Links />
       <Input id = "event"
       placeholder = "please type texts"
       type = "text" / >
@@ -111,7 +113,6 @@ class Display extends Component {
 						</Row>): <div className="carousel">
 							<ControlledCarousel carouselItems={carousels} />
 						</div>}
-
 					</div>
 				</div>
       )

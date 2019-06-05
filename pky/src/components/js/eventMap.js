@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import '../style/event.css';
+import 'leaflet/dist/leaflet.css';
 
 type State = {
   zoom: number,
@@ -7,7 +9,7 @@ type State = {
 
 export default class EventMap extends Component<{}, State> {
   state = {
-    zoom: 13,
+    zoom: 10,
   }
 
   render() {
