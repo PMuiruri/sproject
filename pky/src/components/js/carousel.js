@@ -26,7 +26,7 @@ class ControlledCarousel extends React.Component {
     const { index, direction } = this.state;
 console.log(this.props.carouselItems);
     return (
-      <Carousel 
+      <Carousel
         activeIndex={index}
         direction={direction}
         onSelect={this.handleSelect}
