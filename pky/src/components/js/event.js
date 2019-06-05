@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import {Jumbotron} from 'react-bootstrap';
 import EventMap from './eventMap.js';
+import moment from 'moment';
 
 
 class Event extends Component {
 
   render() {
+    var t = moment.utc(this.props.data.event_dates.ending_day).format("HH:mm")
+console.log(t)
     return (
       <div>
       <Jumbotron>
@@ -13,15 +16,19 @@ class Event extends Component {
       <p>
       	<div dangerouslySetInnerHTML={{__html: this.props.data.description.body}}></div>
       </p>
-      <p>
+      <p> <strong>Street Address : </strong>
       {this.props.data.location.address.street_address}
       </p>
-      <p>
+      <p> <strong>Tags : </strong>
       {this.props.data.tags[0].name}
       </p>
-
+      <p>  <strong>Start : </strong>{moment.utc(this.props.data.event_dates.starting_day).format("LLLL")}</p>
+      {this.props.data.event_dates.ending_day != null?
+        <p><strong>End : </strong>{moment.utc(this.props.data.event_dates.ending_day).format("LLLL")}</p>:  null}
       </Jumbotron>
+      <div>
       <EventMap data={this.props.data.location}/>
+      </div>
       </div>
     );
   }
