@@ -17,7 +17,7 @@ console.log(t)
       	<div dangerouslySetInnerHTML={{__html: this.props.data.description.body}}></div>
       </p>
       <p> <strong>Street Address : </strong>
-      {this.props.data.location.address.street_address}
+      {this.props.data.location.address.street_address} {this.props.data.location.address.postal_code} {this.props.data.location.address.locality}
       </p>
       <p> <strong>Tags : </strong>
       {this.props.data.tags[0].name}
