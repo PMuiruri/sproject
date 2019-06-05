@@ -7,10 +7,14 @@ import ControlledCarousel from "./carousel.js";
 import Row from "react-bootstrap/Row";
 import Event from "./event.js";
 import Links from "./links.js";
+import FooterPagePro from "./Footer.js";
 import "../style/search.css";
 import "../style/display.css";
 import "../style/carousel.css";
 import "../style/carousel.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
 
 class Display extends Component {
   constructor(props) {
@@ -147,6 +151,7 @@ class Display extends Component {
               <ControlledCarousel carouselItems={carousels} />
             </div>
           )}
+          <FooterPagePro />
         </div>
       </div>
     );
