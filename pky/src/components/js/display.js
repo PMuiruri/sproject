@@ -108,10 +108,10 @@ class Display extends Component {
         this.state.isloaded ? ( <Row className = "justify-content-center" >
             <Search className = "bbtn" label = "Back" handleClick = {() => this.prevResults()}/>
 						<Search label = "Next" className = "bbtn" handleClick = {() => this.nextResults()}/>
-						</Row>): null}
-						<div className="carousel">
+						</Row>): <div className="carousel">
 							<ControlledCarousel carouselItems={carousels} />
-						</div>
+						</div>}
+
 					</div>
 				</div>
       )
