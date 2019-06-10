@@ -5,7 +5,7 @@ const axios = require("axios");
 const CircularJSON = require("circular-json");
 
 
-const getEvents = () => {
+const getAllEvents = () => {
   try {
     return axios
       .get("http://open-api.myhelsinki.fi/v1/events/?limit=100")
@@ -25,7 +25,7 @@ const getTagSearch = () => {
 };
 app.get("/", async (req, res, next) => {
   try {
-    const events = await getEvents();
+    const events = await getAllEvents();
     res.header("Access-Control-Allow-Origin", "*");
     res.json(JSON.parse(events));
   } catch (error) {

@@ -67,7 +67,16 @@ class Display extends Component {
     console.log("new: " + this.state.searchIndex);
     window.scrollTo(0, 0);
   }
-  fetchData = () => {
+  fetchTag = () => {
+    fetch("http://localhost:3030/tags")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ data: data });
+      })
+      .catch(error => console.log(error));
+  };
+  fetchAllEvents = () => {
     fetch("http://localhost:3030/")
       .then(response => response.json())
       .then(data => {
