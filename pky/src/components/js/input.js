@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../style/input.css";
 import { Form } from "react-bootstrap";
 class Input extends Component {
+
   render() {
     return (
       <div className="input">
