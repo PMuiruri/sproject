@@ -37,7 +37,9 @@ export default class EventMap extends Component<{}, State> {
         />
         <Marker position={position}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            {this.props.data.address.street_address} <br />
+            {this.props.data.address.postal_code} {this.props.data.address.locality} <br />
+
           </Popup>
         </Marker>
       </Map>

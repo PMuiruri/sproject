@@ -117,13 +117,6 @@ class Display extends Component {
       this.state.data.data.length > 0
     ) {
       carousels = this.state.data.data.slice(0, 3);
-
-      if (
-        typeof this.state.data.data !== "undefined" &&
-        this.state.data.data.length > 0
-      ) {
-        carousels = this.state.data.data.slice(0, 3);
-      }
       return (
         <div className="body">
           <Header />
