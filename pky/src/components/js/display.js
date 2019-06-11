@@ -121,7 +121,7 @@ class Display extends Component {
         <div className="body">
           <Header />
           <Links />
-          <Input id="event" placeholder="please type texts" type="text" />
+          <Input id="event" />
           <Search
             className="searchBttn"
             label="Search"
