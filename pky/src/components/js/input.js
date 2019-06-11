@@ -10,9 +10,11 @@ class Input extends Component {
           title="Dropdown button"
           size="lg"
         >
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">SPORTS</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">FESTIVAL</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">DANCE</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">MUSIC</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">FOOD</Dropdown.Item>
         </DropdownButton>
       </div>
     );
