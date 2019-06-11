@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "../style/header.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+// import Links from './links.js';
 class Header extends Component {
   render() {
     return (
