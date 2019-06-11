@@ -7,8 +7,6 @@ import moment from 'moment';
 class Event extends Component {
 
   render() {
-    var t = moment.utc(this.props.data.event_dates.ending_day).format("HH:mm")
-console.log(t)
     return (
       <div>
       <Jumbotron>

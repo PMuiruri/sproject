@@ -67,7 +67,20 @@ class Display extends Component {
     console.log("new: " + this.state.searchIndex);
     window.scrollTo(0, 0);
   }
-  fetchData = () => {
+  fetchTag = e => {
+    let tag = e.target.value;
+    console.log("react " + e.target.value);
+    fetch(`http://localhost:3030/tags?tag=${tag}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.setState({ data: data });
+        this.renderData();
+      })
+      .catch(error => console.log(error));
+  };
+
+  fetchAllEvents = () => {
     fetch("http://localhost:3030/")
       .then(response => response.json())
       .then(data => {
@@ -76,8 +89,9 @@ class Display extends Component {
       })
       .catch(error => console.log(error));
   };
+
   componentDidMount() {
-    this.fetchData();
+    this.fetchAllEvents();
   }
   render() {
     var carousels = [];
@@ -90,12 +104,7 @@ class Display extends Component {
         events = this.state.eventList.map((event, index) => {
           return (
             <div>
-              {" "}
-              <Cards
-                key={index}
-                event={event}
-                moreDetails={this.moreDetails}
-              />{" "}
+              <Cards key={index} event={event} moreDetails={this.moreDetails} />
             </div>
           );
         });
@@ -120,8 +129,8 @@ class Display extends Component {
       return (
         <div className="body">
           <Header />
-          <Links />
-          <Input id="event" />
+          <Links handleClick={this.fetchTag} />
+          <Input id="event" placeholder="please type texts" type="text" />
           <Search
             className="searchBttn"
             label="Search"
