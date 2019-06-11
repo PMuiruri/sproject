@@ -84,7 +84,7 @@ class Display extends Component {
     fetch("http://localhost:3030/")
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log(data.tags);
         this.setState({ data: data });
       })
       .catch(error => console.log(error));
@@ -129,13 +129,8 @@ class Display extends Component {
       return (
         <div className="body">
           <Header />
-          <Links handleClick={this.fetchTag} />
           <Input id="event" placeholder="please type texts" type="text" />
-          <Search
-            className="searchBttn"
-            label="Search"
-            handleClick={() => this.nextResults()}
-          />
+          <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
           <div>
             <div className="flex-container"> {events} </div>
             {this.state.isloaded ? (

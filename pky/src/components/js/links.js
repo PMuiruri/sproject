@@ -12,11 +12,12 @@ class Links extends Component {
       <div>
         <div className="link-container">
           <ButtonToolbar className="body-links">
+            <Button variant="outline-danger" value="food"onClick={this.props.handleAll}>All</Button>
             <Button variant="outline-primary" value="sports" onClick={this.props.handleClick}>Sports</Button>
             <Button variant="outline-secondary" value="festivals" onClick={this.props.handleClick}>Festivals</Button>
             <Button variant="outline-success" value="dance" onClick={this.props.handleClick}>Dance</Button>
             <Button variant="outline-warning" value="music"onClick={this.props.handleClick}>Music</Button>
-            <Button variant="outline-danger" value="food"onClick={this.props.handleClick}>Food</Button>
+            <Button variant="outline-danger" value="families"onClick={this.props.handleClick}>Families</Button>
           </ButtonToolbar>
         </div>
       </div>
