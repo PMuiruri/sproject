@@ -66,11 +66,10 @@ class Display extends Component {
   componentDidUpdate() {
     console.log("new: " + this.state.searchIndex);
     window.scrollTo(0, 0);
-
   }
-  fetchTag = (e) =>{
-   let tag = e.target.value;
-   console.log("react "+e.target.value);
+  fetchTag = e => {
+    let tag = e.target.value;
+    console.log("react " + e.target.value);
     fetch(`http://localhost:3030/tags?tag=${tag}`)
       .then(response => response.json())
       .then(data => {
@@ -79,7 +78,7 @@ class Display extends Component {
         this.renderData();
       })
       .catch(error => console.log(error));
-  }
+  };
 
   fetchAllEvents = () => {
     fetch("http://localhost:3030/")
@@ -89,7 +88,7 @@ class Display extends Component {
         this.setState({ data: data });
       })
       .catch(error => console.log(error));
-  }
+  };
 
   componentDidMount() {
     this.fetchAllEvents();
@@ -105,11 +104,7 @@ class Display extends Component {
         events = this.state.eventList.map((event, index) => {
           return (
             <div>
-              <Cards
-                key={index}
-                event={event}
-                moreDetails={this.moreDetails}
-              />
+              <Cards key={index} event={event} moreDetails={this.moreDetails} />
             </div>
           );
         });
