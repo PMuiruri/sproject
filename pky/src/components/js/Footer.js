@@ -49,28 +49,24 @@ class FooterPagePro extends Component {
             <MDBRow className="pb-3">
               <MDBCol md="12">
                 <div className="mb-5 flex-center">
-                  <a className="fb-ic">
-                    <i className="fab fa-facebook-f fa-lg white-text mr-md-4">
-                      {" "}
-                    </i>
+                  <a className="fb-ic" href="facebook">
+                    <i className="fab fa-facebook-f fa-lg white-text mr-md-4" />
                   </a>
-                  <a className="tw-ic">
+                  <a className="tw-ic" href="twitter">
                     <i className="fab fa-twitter fa-lg white-text mr-md-4"> </i>
                   </a>
-                  <a className="gplus-ic">
+                  <a className="gplus-ic" href="google">
                     <i className="fab fa-google-plus-g fa-lg white-text mr-md-4" />
                   </a>
-                  <a className="li-ic">
-                    <i className="fab fa-linkedin-in fa-lg white-text mr-md-4">
-                      {" "}
-                    </i>
+                  <a className="li-ic" href="linkedin">
+                    <i className="fab fa-linkedin-in fa-lg white-text mr-md-4" />
                   </a>
-                  <a className="ins-ic">
+                  <a className="ins-ic" href="instagram">
                     <i className="fab fa-instagram fa-lg white-text mr-md-4">
                       {" "}
                     </i>
                   </a>
-                  <a className="pin-ic">
+                  <a className="pin-ic" href="pinterest">
                     <i className="fab fa-pinterest fa-lg white-text"> </i>
                   </a>
                 </div>
@@ -80,7 +76,7 @@ class FooterPagePro extends Component {
           <div className="footer-copyright text-center py-3">
             <MDBContainer fluid>
               &copy; {new Date().getFullYear()} Copyright:
-              <a href="https://www.MDBootstrap.com"> MDBootstrap.com </a>
+              <a href="https://www.MDBootstrap.com"> pky summer project </a>
             </MDBContainer>
           </div>
         </MDBFooter>
