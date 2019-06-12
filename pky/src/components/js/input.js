@@ -7,14 +7,14 @@ class Input extends Component {
       <div className="input">
         <DropdownButton
           id="dropdown-basic-button"
-          title="Dropdown button"
+          title="Select from here"
           size="lg"
         >
-          <Dropdown.Item href="#/action-1">SPORTS</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">FESTIVAL</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">DANCE</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">MUSIC</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">FOOD</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">sports</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">festivaali</Dropdown.Item>
+          <Dropdown.Item href="#/action-4">dance</Dropdown.Item>
+          <Dropdown.Item href="#/action-5">music</Dropdown.Item>
+          <Dropdown.Item href="#/action-6">food</Dropdown.Item>
         </DropdownButton>
       </div>
     );
