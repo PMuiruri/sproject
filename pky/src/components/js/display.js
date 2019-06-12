@@ -24,26 +24,34 @@ class Display extends Component {
       eventList: [],
       isloaded: false,
       singleEvent: false,
-      eventId: 0
+      eventId: 0,
+      resultCount:18,
+      isprevdisabled:false,
+      isnextdisabled:false
     };
   }
+  //function to display next results
   nextResults() {
-    if (this.state.searchIndex > 80) {
-      return console.log("no more items");
+    if (this.state.searchIndex >= 100-this.state.resultCount) {
+      this.setState({isnextdisabled:true, searchIndex:100-this.state.resultCount})
+      console.log("no more items")
     } else {
       this.setState({
-        searchIndex: this.state.searchIndex + 9,
-        isloaded: true
+        searchIndex: this.state.searchIndex + this.state.resultCount,
+        isloaded: true,
+        isprevdisabled:false
       });
       this.renderData();
     }
   }
   prevResults() {
     this.setState({
-      searchIndex: this.state.searchIndex - 9
+      searchIndex: this.state.searchIndex - this.state.resultCount,
+      isnextdisabled:false
     });
-    if (this.state.searchIndex < 0) {
-      return console.log("no more items");
+    if (this.state.searchIndex <= 0) {
+      this.setState({isprevdisabled:true, searchIndex:0})
+      console.log("no more items");
     } else {
       this.renderData();
     }
@@ -58,7 +66,7 @@ class Display extends Component {
     console.log("old: " + this.state.searchIndex);
     let data = this.state.data.data.slice(
       this.state.searchIndex,
-      this.state.searchIndex + 9
+      this.state.searchIndex + this.state.resultCount
     );
     this.setState({
       eventList: data
@@ -91,7 +99,6 @@ class Display extends Component {
 
   componentDidMount() {
     this.fetchAllEvents();
-
   }
   render() {
     var carousels = [];
@@ -105,8 +112,8 @@ class Display extends Component {
       ) {
         events = this.state.eventList.map((event, index) => {
           return (
-            <div>
-            <Cards key={index} event={event} moreDetails={this.moreDetails} />
+            <div key={index}>
+            <Cards event={event} moreDetails={this.moreDetails} />
             </div>
           );
         });
@@ -143,16 +150,8 @@ class Display extends Component {
         <div className="flex-container"> {events} </div>
         {this.state.isloaded ? (
           <Row className="justify-content-center">
-          <Search
-          className="bbtn"
-          label="Back"
-          handleClick={() => this.prevResults()}
-          />
-          <Search
-          label="Next"
-          className="bbtn"
-          handleClick={() => this.nextResults()}
-          />
+          <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+          <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
           </Row>
         ) : (
           <div className="carousel">
