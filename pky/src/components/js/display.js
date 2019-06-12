@@ -21,6 +21,7 @@ class Display extends Component {
       data: {},
       tags:[],
       searchIndex: 0,
+      eventIndex: 0,
       eventList: [],
       isloaded: false,
       singleEvent: false,
@@ -30,9 +31,12 @@ class Display extends Component {
       isnextdisabled:false
     };
   }
-  //function to display next results
+  //function to render the next set of results
   nextResults() {
-    if (this.state.searchIndex >= 100-this.state.resultCount) {
+    if (this.state.singleEvent === true){
+
+    }
+    else if (this.state.searchIndex >= 100-this.state.resultCount) {
       this.setState({isnextdisabled:true, searchIndex:100-this.state.resultCount})
       console.log("no more items")
     } else {
@@ -44,6 +48,7 @@ class Display extends Component {
       this.renderData();
     }
   }
+  //function to navigate back to previous set of data
   prevResults() {
     this.setState({
       searchIndex: this.state.searchIndex - this.state.resultCount,
@@ -62,8 +67,8 @@ class Display extends Component {
       eventId: id
     });
   };
+  //function to limit the amount of data to render
   renderData() {
-    console.log("old: " + this.state.searchIndex);
     let data = this.state.data.data.slice(
       this.state.searchIndex,
       this.state.searchIndex + this.state.resultCount
@@ -72,10 +77,11 @@ class Display extends Component {
       eventList: data
     });
   }
+
   componentDidUpdate() {
-    console.log("new: " + this.state.searchIndex);
     window.scrollTo(0, 0);
   }
+// function to fecth based on a tag name
   fetchTag = e => {
     let tag = e.target.value;
     console.log("react " + e.target.value);
@@ -87,7 +93,7 @@ class Display extends Component {
     })
     .catch(error => console.log(error));
   };
-
+// function to fetch all events
   fetchAllEvents = () => {
     fetch("http://localhost:3030/")
     .then(response => response.json())
@@ -96,10 +102,11 @@ class Display extends Component {
     })
     .catch(error => console.log(error));
   };
-
+//function to load data at the beginning of the app
   componentDidMount() {
     this.fetchAllEvents();
   }
+
   render() {
     var carousels = [];
     var events = [];
@@ -123,11 +130,11 @@ class Display extends Component {
         typeof this.state.data.data !== "undefined" &&
         this.state.data.data.length > 0
       ) {
-        let eventS = this.state.data.data.filter(obj => {
-          return obj.id === this.state.eventId;
+        let eventI =this.state.data.data.findIndex(obj => {
+            return obj.id === this.state.eventId;
         });
-        console.log(eventS);
-        events = <Event data={eventS[0]} />;
+        this.setState({eventIndex: eventI})
+        events = <Event data={this.state.data.data[this.state.eventIndex]} />;
       }
     }
     if (

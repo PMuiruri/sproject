@@ -21,7 +21,7 @@ class Input extends Component {
       })};
 
       </Form.Control>
-      <Form.Control as = "select" onChange={this.props.handleChange}>
+      <Form.Control as = "select" onChange={this.props.handleLocationChange}>
       <option value=""> Search by Location< /option>
       return (
           <option value="Helsinki"> Helsinki < /option>

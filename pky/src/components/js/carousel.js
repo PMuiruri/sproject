@@ -24,7 +24,6 @@ class ControlledCarousel extends React.Component {
 
   render() {
     const { index, direction } = this.state;
-console.log(this.props.carouselItems);
     return (
       <Carousel
         activeIndex={index}
