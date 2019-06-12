@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "../style/input.css";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 class Input extends Component {
   constructor(props) {
     super(props);
