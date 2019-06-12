@@ -5,35 +5,64 @@ import moment from "moment";
 import Row from "react-bootstrap/Row";
 import Search from "./search.js";
 
+var eventS;
 class Event extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      isprevdisabled:false,
+      isnextdisabled:false,
+      eventIndex: 0
+    }
+  }
+  renderData(){
+    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+       eventS = this.props.dataSet.findIndex(obj => {
+           return obj.id === this.props.id;
+      })
+      this.setState({eventIndex:eventS});
+  }
+}
+  componentDidUpdate(){
+    console.log(this.state.eventIndex);
+  }
   render() {
+    var event={};
+    console.log(this.props.id);
+    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+       event = this.props.dataSet[this.state.eventIndex];
+     }
     return (
       <div>
         <Jumbotron>
-          <h1>{this.props.data.name.fi}</h1>
-          <p dangerouslySetInnerHTML={{__html: this.props.data.description.body}}/>
+          <h1>{event.name.fi}</h1>
+          <p dangerouslySetInnerHTML={{__html: event.description.body}}/>
           <p><strong>Street Address : </strong>
-            {this.props.data.location.address.street_address}{" "}
-            {this.props.data.location.address.postal_code}{" "}
-            {this.props.data.location.address.locality}
+            {event.location.address.street_address}{" "}
+            {event.location.address.postal_code}{" "}
+            {event.location.address.locality}
           </p>
           <p><strong>Tags : </strong>
-            {this.props.data.tags[0].name}
+            {event.tags[0].name}
           </p>
           <p><strong>Start : </strong>
-            {moment.utc(this.props.data.event_dates.starting_day).format("LLLL")}
+            {moment.utc(event.event_dates.starting_day).format("LLLL")}
           </p>
-          {this.props.data.event_dates.ending_day != null ? (
+          {event.event_dates.ending_day != null ? (
             <p><strong>End : </strong>
-              {moment.utc(this.props.data.event_dates.ending_day).format("LLLL")}
+              {moment.utc(event.event_dates.ending_day).format("LLLL")}
             </p>
           ) : null}
         </Jumbotron>
         <div>
-          <EventMap data={this.props.data.location} />
+          <EventMap data={event.location} />
           <Row className="justify-content-center">
           </Row>
         </div>
+        <Row className="justify-content-center">
+        <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+        <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
+        </Row>
       </div>
     );
   }

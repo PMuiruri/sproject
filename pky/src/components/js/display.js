@@ -21,7 +21,6 @@ class Display extends Component {
       data: {},
       tags:[],
       searchIndex: 0,
-      eventIndex: 0,
       eventList: [],
       isloaded: false,
       singleEvent: false,
@@ -64,7 +63,8 @@ class Display extends Component {
   moreDetails = id => {
     this.setState({
       singleEvent: true,
-      eventId: id
+      eventId: id,
+      isloaded: false
     });
   };
   //function to limit the amount of data to render
@@ -77,7 +77,6 @@ class Display extends Component {
       eventList: data
     });
   }
-
   componentDidUpdate() {
     window.scrollTo(0, 0);
   }
@@ -111,12 +110,8 @@ class Display extends Component {
     var carousels = [];
     var events = [];
     var tagArray =[];
-    console.log(this.state.tags);
     if (this.state.singleEvent === false) {
-      if (
-        typeof this.state.eventList !== "undefined" &&
-        this.state.eventList.length > 0
-      ) {
+      if (typeof this.state.eventList !== "undefined" && this.state.eventList.length > 0) {
         events = this.state.eventList.map((event, index) => {
           return (
             <div key={index}>
@@ -130,11 +125,7 @@ class Display extends Component {
         typeof this.state.data.data !== "undefined" &&
         this.state.data.data.length > 0
       ) {
-        let eventI =this.state.data.data.findIndex(obj => {
-            return obj.id === this.state.eventId;
-        });
-        this.setState({eventIndex: eventI})
-        events = <Event data={this.state.data.data[this.state.eventIndex]} />;
+        events = <Event dataSet={this.state.data.data} id={this.state.eventId}/>;
       }
     }
     if (
