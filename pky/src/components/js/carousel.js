@@ -25,12 +25,7 @@ class ControlledCarousel extends React.Component {
   render() {
     const { index, direction } = this.state;
     return (
-      <Carousel
-        activeIndex={index}
-        direction={direction}
-        onSelect={this.handleSelect}
-
-      >
+      <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect}>
       {this.props.carouselItems.map((event , index)=>{
         return(   <Carousel.Item key={index}>
           {event.description.images.length >0 ?
