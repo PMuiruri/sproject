@@ -16,9 +16,7 @@ class FooterPagePro extends Component {
               </MDBCol>
               <MDBCol md="2" className="b-3">
                 <h6 className="title font-weight-bold">
-                  <a href="#!">
-                    <Link to="/ContactUs">Contact us</Link>
-                  </a>
+                  <Link to="/ContactUs">Contact us</Link>
                 </h6>
               </MDBCol>
             </MDBRow>

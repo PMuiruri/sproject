@@ -8,8 +8,12 @@ class Input extends Component {
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Control as="select" onChange={this.props.handleChange}>
             <option value=""> Search Events</option>
-            {this.props.options.map(opt => {
-              return <option value={opt}> {opt} </option>;
+            {this.props.options.map((opt, index) => {
+              return (
+                <option key={index} value={opt}>
+                  {opt}
+                </option>
+              );
             })}
             ;
           </Form.Control>
