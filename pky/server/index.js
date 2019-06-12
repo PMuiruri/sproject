@@ -18,7 +18,7 @@ const getTagSearch = (tag) => {
   try {
       console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`)
     return axios
-      .get(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`)
+      .get(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}&limit=100`)
       .then(response => CircularJSON.stringify(response.data));
   } catch (error) {
     console.error("Axios error: " + error);

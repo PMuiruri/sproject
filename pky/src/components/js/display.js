@@ -19,6 +19,7 @@ class Display extends Component {
 
     this.state = {
       data: {},
+      tags:[],
       searchIndex: 0,
       eventList: [],
       isloaded: false,
@@ -71,31 +72,32 @@ class Display extends Component {
     let tag = e.target.value;
     console.log("react " + e.target.value);
     fetch(`http://localhost:3030/tags?tag=${tag}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ data: data });
-        this.renderData();
-      })
-      .catch(error => console.log(error));
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data });
+      this.renderData();
+    })
+    .catch(error => console.log(error));
   };
 
   fetchAllEvents = () => {
     fetch("http://localhost:3030/")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ data: data });
-      })
-      .catch(error => console.log(error));
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data, tags:Object.values(data.tags) });
+    })
+    .catch(error => console.log(error));
   };
 
   componentDidMount() {
     this.fetchAllEvents();
+
   }
   render() {
     var carousels = [];
     var events = [];
+    var tagArray =[];
+    console.log(this.state.tags);
     if (this.state.singleEvent === false) {
       if (
         typeof this.state.eventList !== "undefined" &&
@@ -104,7 +106,7 @@ class Display extends Component {
         events = this.state.eventList.map((event, index) => {
           return (
             <div>
-              <Cards key={index} event={event} moreDetails={this.moreDetails} />
+            <Cards key={index} event={event} moreDetails={this.moreDetails} />
             </div>
           );
         });
@@ -126,38 +128,39 @@ class Display extends Component {
       this.state.data.data.length > 0
     ) {
       carousels = this.state.data.data.slice(0, 3);
+    }
+    if (
+      typeof this.state.tags !== "undefined" &&
+      this.state.tags.length > 0
+    ) {
+      tagArray = this.state.tags;
       return (
         <div className="body">
-          <Header />
-          <Links handleClick={this.fetchTag} />
-          <Input id="event" placeholder="please type texts" type="text" />
+        <Header />
+        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag}/>
+        <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
+        <div>
+        <div className="flex-container"> {events} </div>
+        {this.state.isloaded ? (
+          <Row className="justify-content-center">
           <Search
-            className="searchBttn"
-            label="Search"
-            handleClick={() => this.nextResults()}
+          className="bbtn"
+          label="Back"
+          handleClick={() => this.prevResults()}
           />
-          <div>
-            <div className="flex-container"> {events} </div>
-            {this.state.isloaded ? (
-              <Row className="justify-content-center">
-                <Search
-                  className="bbtn"
-                  label="Back"
-                  handleClick={() => this.prevResults()}
-                />
-                <Search
-                  label="Next"
-                  className="bbtn"
-                  handleClick={() => this.nextResults()}
-                />
-              </Row>
-            ) : (
-              <div className="carousel">
-                <ControlledCarousel carouselItems={carousels} />
-              </div>
-            )}
+          <Search
+          label="Next"
+          className="bbtn"
+          handleClick={() => this.nextResults()}
+          />
+          </Row>
+        ) : (
+          <div className="carousel">
+          <ControlledCarousel carouselItems={carousels} />
           </div>
-          <FooterPagePro />
+        )}
+        </div>
+        <FooterPagePro />
         </div>
       );
     }
