@@ -43,7 +43,7 @@ console.log(this.props.carouselItems);
       : <img  className="d-block w-100" src="images/altImage1.jpg" alt='' />}
             <Carousel.Caption>
               <h2>{event.name.fi}</h2>
-              <h3>{(event.event_dates.starting_day).split("T")[0]} </h3>
+              <h4>{(event.event_dates.starting_day).split("T")[0]} </h4>
             </Carousel.Caption>
           </Carousel.Item>)
 
