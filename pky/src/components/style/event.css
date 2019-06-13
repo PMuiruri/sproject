@@ -1,8 +1,9 @@
-.mapContainer{
-  margin-top: 20%;
+.mapContainer {
   padding: 2%;
 }
-.leaflet-container{
-  height: 300px;
-  width: auto;
+
+.leaflet-container {
+  height: 500px;
+  width: 100%;
+  margin-left: 20px;
 }
