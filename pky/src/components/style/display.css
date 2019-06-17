@@ -1,9 +1,19 @@
+.wrapper {
+  background-image: url(../img/dots.png) !important;
+  background-size: contain !important;
+  height: 100vh;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 5%;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .bbtn {
@@ -15,4 +25,10 @@
   margin: 0 auto;
   margin-top: 15px;
   width: 150px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: center !important;
+  color: #fcfcfc !important
 }
