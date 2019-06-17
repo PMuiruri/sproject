@@ -1,8 +1,5 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
-
-
-
 class ControlledCarousel extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -21,17 +18,10 @@ class ControlledCarousel extends React.Component {
       direction: e.direction,
     });
   }
-
   render() {
     const { index, direction } = this.state;
-console.log(this.props.carouselItems);
     return (
-      <Carousel
-        activeIndex={index}
-        direction={direction}
-        onSelect={this.handleSelect}
-
-      >
+      <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect}>
       {this.props.carouselItems.map((event , index)=>{
         return(   <Carousel.Item key={index}>
           {event.description.images.length >0 ?
@@ -48,7 +38,6 @@ console.log(this.props.carouselItems);
           </Carousel.Item>)
 
       }) }
-
       </Carousel>
     );
   }
