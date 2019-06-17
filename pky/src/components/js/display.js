@@ -24,50 +24,89 @@ class Display extends Component {
       eventList: [],
       isloaded: false,
       singleEvent: false,
-      eventId: 0
+      eventId: 0,
+      resultCount:18,
+      eventIndex: 0,
+      isprevdisabled:false,
+      isnextdisabled:false
     };
   }
+  //function to render the next set of results
   nextResults() {
-    if (this.state.searchIndex > 80) {
-      return console.log("no more items");
+    if (this.state.searchIndex >= 100-this.state.resultCount) {
+      this.setState({isnextdisabled:true, searchIndex:100-this.state.resultCount})
+      console.log("no more items")
     } else {
       this.setState({
-        searchIndex: this.state.searchIndex + 9,
-        isloaded: true
+        searchIndex: this.state.searchIndex + this.state.resultCount,
+        isloaded: true,
+        isprevdisabled:false
       });
       this.renderData();
     }
   }
+  //function to navigate back to previous set of data
   prevResults() {
     this.setState({
-      searchIndex: this.state.searchIndex - 9
+      searchIndex: this.state.searchIndex - this.state.resultCount,
+      isnextdisabled:false
     });
-    if (this.state.searchIndex < 0) {
-      return console.log("no more items");
+    if (this.state.searchIndex <= 0) {
+      this.setState({isprevdisabled:true, searchIndex:0})
+      console.log("no more items");
     } else {
       this.renderData();
     }
   }
+  //function to view more details about a single event
   moreDetails = id => {
     this.setState({
       singleEvent: true,
-      eventId: id
+      eventId: id,
+      isloaded: false
     });
   };
+
+  //function to limit the amount of data to render
   renderData() {
-    console.log("old: " + this.state.searchIndex);
     let data = this.state.data.data.slice(
       this.state.searchIndex,
-      this.state.searchIndex + 9
+      this.state.searchIndex + this.state.resultCount
     );
     this.setState({
-      eventList: data
+      eventList: data,
+      singleEvent: false
     });
   }
   componentDidUpdate() {
-    console.log("new: " + this.state.searchIndex);
     window.scrollTo(0, 0);
   }
+  // function to fecth based on a location
+    fetchLocation = e => {
+      var lat;
+      var long;
+      let location = e.target.value;
+      console.log("react " + e.target.value);
+      if(location === 'Espoo'){
+        lat = '60.205490';
+        long = '24.655899';
+      } else if(location === 'Helsinki'){
+        lat = '60.192059';
+        long = '24.945831';
+      } else if(location === 'Vantaa'){
+        lat = '60.294411';
+        long = '25.040070';
+      }
+      console.log("react " + lat, long);
+      fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ data: data });
+        this.renderData();
+      })
+      .catch(error => console.log(error));
+    };
+// function to fecth based on a tag name
   fetchTag = e => {
     let tag = e.target.value;
     console.log("react " + e.target.value);
@@ -79,7 +118,7 @@ class Display extends Component {
     })
     .catch(error => console.log(error));
   };
-
+// function to fetch all events
   fetchAllEvents = () => {
     fetch("http://localhost:3030/")
     .then(response => response.json())
@@ -88,71 +127,46 @@ class Display extends Component {
     })
     .catch(error => console.log(error));
   };
-
+//function to load data at the beginning of the app
   componentDidMount() {
     this.fetchAllEvents();
-
   }
+
   render() {
     var carousels = [];
     var events = [];
     var tagArray =[];
-    console.log(this.state.tags);
     if (this.state.singleEvent === false) {
-      if (
-        typeof this.state.eventList !== "undefined" &&
-        this.state.eventList.length > 0
-      ) {
+      if (typeof this.state.eventList !== "undefined" && this.state.eventList.length > 0) {
         events = this.state.eventList.map((event, index) => {
           return (
-            <div>
-            <Cards key={index} event={event} moreDetails={this.moreDetails} />
+            <div key={index}>
+            <Cards event={event} moreDetails={this.moreDetails} />
             </div>
           );
         });
       }
     } else {
-      if (
-        typeof this.state.data.data !== "undefined" &&
-        this.state.data.data.length > 0
-      ) {
-        let eventS = this.state.data.data.filter(obj => {
-          return obj.id === this.state.eventId;
-        });
-        console.log(eventS);
-        events = <Event data={eventS[0]} />;
+      if (typeof this.state.data.data !== "undefined" && this.state.data.data.length > 0) {
+        events = <Event dataSet={this.state.data.data} id={this.state.eventId}/>;
       }
     }
-    if (
-      typeof this.state.data.data !== "undefined" &&
-      this.state.data.data.length > 0
-    ) {
+    if (typeof this.state.data.data !== "undefined" &&this.state.data.data.length > 0) {
       carousels = this.state.data.data.slice(0, 3);
     }
-    if (
-      typeof this.state.tags !== "undefined" &&
-      this.state.tags.length > 0
-    ) {
+    if (typeof this.state.tags !== "undefined" && this.state.tags.length > 0) {
       tagArray = this.state.tags;
       return (
         <div className="body">
         <Header />
-        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag}/>
+        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
         <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
         <div>
         <div className="flex-container"> {events} </div>
         {this.state.isloaded ? (
           <Row className="justify-content-center">
-          <Search
-          className="bbtn"
-          label="Back"
-          handleClick={() => this.prevResults()}
-          />
-          <Search
-          label="Next"
-          className="bbtn"
-          handleClick={() => this.nextResults()}
-          />
+          <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+          <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
           </Row>
         ) : (
           <div className="carousel">
