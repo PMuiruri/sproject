@@ -26,16 +26,14 @@ class Display extends Component {
       singleEvent: false,
       eventId: 0,
       resultCount:18,
+      eventIndex: 0,
       isprevdisabled:false,
       isnextdisabled:false
     };
   }
   //function to render the next set of results
   nextResults() {
-    if (this.state.singleEvent === true){
-
-    }
-    else if (this.state.searchIndex >= 100-this.state.resultCount) {
+    if (this.state.searchIndex >= 100-this.state.resultCount) {
       this.setState({isnextdisabled:true, searchIndex:100-this.state.resultCount})
       console.log("no more items")
     } else {
@@ -60,6 +58,7 @@ class Display extends Component {
       this.renderData();
     }
   }
+  //function to view more details about a single event
   moreDetails = id => {
     this.setState({
       singleEvent: true,
@@ -67,6 +66,7 @@ class Display extends Component {
       isloaded: false
     });
   };
+
   //function to limit the amount of data to render
   renderData() {
     let data = this.state.data.data.slice(
@@ -74,12 +74,38 @@ class Display extends Component {
       this.state.searchIndex + this.state.resultCount
     );
     this.setState({
-      eventList: data
+      eventList: data,
+      singleEvent: false
     });
   }
   componentDidUpdate() {
     window.scrollTo(0, 0);
   }
+  // function to fecth based on a location
+    fetchLocation = e => {
+      var lat;
+      var long;
+      let location = e.target.value;
+      console.log("react " + e.target.value);
+      if(location === 'Espoo'){
+        lat = '60.205490';
+        long = '24.655899';
+      } else if(location === 'Helsinki'){
+        lat = '60.192059';
+        long = '24.945831';
+      } else if(location === 'Vantaa'){
+        lat = '60.294411';
+        long = '25.040070';
+      }
+      console.log("react " + lat, long);
+      fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ data: data });
+        this.renderData();
+      })
+      .catch(error => console.log(error));
+    };
 // function to fecth based on a tag name
   fetchTag = e => {
     let tag = e.target.value;
@@ -121,28 +147,19 @@ class Display extends Component {
         });
       }
     } else {
-      if (
-        typeof this.state.data.data !== "undefined" &&
-        this.state.data.data.length > 0
-      ) {
+      if (typeof this.state.data.data !== "undefined" && this.state.data.data.length > 0) {
         events = <Event dataSet={this.state.data.data} id={this.state.eventId}/>;
       }
     }
-    if (
-      typeof this.state.data.data !== "undefined" &&
-      this.state.data.data.length > 0
-    ) {
+    if (typeof this.state.data.data !== "undefined" &&this.state.data.data.length > 0) {
       carousels = this.state.data.data.slice(0, 3);
     }
-    if (
-      typeof this.state.tags !== "undefined" &&
-      this.state.tags.length > 0
-    ) {
+    if (typeof this.state.tags !== "undefined" && this.state.tags.length > 0) {
       tagArray = this.state.tags;
       return (
         <div className="body">
         <Header />
-        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag}/>
+        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
         <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
         <div>
         <div className="flex-container"> {events} </div>
