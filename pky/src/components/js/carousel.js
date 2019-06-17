@@ -1,8 +1,5 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel'
-
-
-
 class ControlledCarousel extends React.Component {
   constructor(props, context) {
     super(props, context);
