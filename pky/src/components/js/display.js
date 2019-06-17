@@ -28,7 +28,7 @@ class Display extends Component {
       isloaded: false,
       singleEvent: false,
       eventId: 0,
-      resultCount:18,
+      resultCount:12,
       eventIndex: 0,
       isprevdisabled:false,
       isnextdisabled:false

@@ -41,6 +41,7 @@ class Event extends Component {
   }
 }
   componentDidUpdate(){
+    window.scrollTo(0, 0);
     console.log("index: "+this.state.eventIndex);
   }
   render() {
