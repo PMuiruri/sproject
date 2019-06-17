@@ -12,7 +12,7 @@ class ContactUs extends Component {
         <div className="contact-container">
           <Media>
             <img
-              width={200}
+              width={201}
               height={200}
               className="pic_HBC"
               src="images/businessCollege.jpeg"

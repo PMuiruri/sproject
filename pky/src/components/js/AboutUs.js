@@ -12,7 +12,7 @@ class AboutUs extends Component {
         <div className="about-container">
           <Media>
             <img
-              width={200}
+              width={201}
               height={200}
               className="pic_HBC"
               src="images/businessCollege.jpeg"
