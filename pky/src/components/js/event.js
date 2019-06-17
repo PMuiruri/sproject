@@ -71,7 +71,6 @@ class Event extends Component {
         <Row className="justify-content-center">
         <Search className="bbtn"label="Back" handleClick={()=>this.prevEvent()}  handleChange={this.state.isprevdisabled}/>
         <Search label="Next" className="bbtn" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
-        <Link to="/display">Home</Link>
         </Row>
       </div>
       </div>
