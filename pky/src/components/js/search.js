@@ -13,6 +13,7 @@ class Search extends Component {
             size="lg"
             onClick={this.props.handleClick}
             value={this.props.id}
+            disabled={this.props.handleChange}
           >
             {this.props.label}
           </Button>
