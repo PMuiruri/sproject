@@ -13,7 +13,7 @@ class Header extends Component {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav>
-              <Nav.Link href="./index.js">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#link">sign in</Nav.Link>
               <Nav.Link href="#link">lang</Nav.Link>
             </Nav>
