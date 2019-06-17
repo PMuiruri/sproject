@@ -2,5 +2,23 @@
   display: flex;
   margin: 0 auto;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 10px;
 }
+
+.event-selector {
+  display: block !important;
+  width: 100% !important;
+  padding: 1.375rem 0.75rem !important;
+  font-size: 1.4rem !important;
+  line-height: 1.5 !important;
+  color: #fff !important;
+  outline: 0 !important;
+  margin: 0 0 .94rem 0 !important;
+  background-color: transparent !important;
+  background-clip: padding-box !important;
+  border: none !important;
+  border-bottom: 1px solid #ced4da !important;
+  border-radius: 0px !important;
+  text-overflow: ellipsis !important;
+}
+
