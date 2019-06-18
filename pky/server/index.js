@@ -1,4 +1,6 @@
 const express = require("express");
+const fs= require('fs');
+const https = require('https');
 const app = express();
 const port = 3000;
 const path = require('path');
@@ -49,7 +51,7 @@ const getLocation = (lat,long) => {
 //   }
 // };
 
-app.get("/", async (req, res, next) => {
+app.get("/events", async (req, res, next) => {
   try {
     const events = await getAllEvents();
     res.header("Access-Control-Allow-Origin", "*");
@@ -87,4 +89,10 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 
 });
-app.listen(port, () => console.log("Server running in port: " + port));
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app)
+.listen(port, function () {
+  console.log(`app listening on port ${port} Go to https://localhost:${port}/`)
+})
