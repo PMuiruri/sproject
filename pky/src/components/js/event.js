@@ -67,52 +67,33 @@ class Event extends Component {
     }
     return (
       <div className="container-fluid">
-        <Row className="justify-content-between align-items-center">
-          <Col md={5}>
-            <Card className="card-map card-raised">
-              <Card.Header className="card-rose">
-                <i className="fas fa-map-pin map-icon" />{" "}
-                {event.location.address.street_address}{" "}
-                {event.location.address.postal_code}{" "}
-                {event.location.address.locality}
-                <br />
-                <i className="fas fa-business-time map-icon" />
-                {moment.utc(event.event_dates.starting_day).format("lll")} -
-                &nbsp;
-                <i className="fas fa-history map-icon" />
-                {moment.utc(event.event_dates.ending_day).format("lll")}
-              </Card.Header>
-              <Card.Body>
-                <h2>{event.name.fi}</h2>
-                <div
-                  dangerouslySetInnerHTML={{ __html: event.description.body }}
-                />
-              </Card.Body>
-              <Card.Footer>
-                <h6>{event.tags[0].name}</h6>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col md={6}>
-            <EventMap className="map-leaflet" data={event.location} />
-          </Col>
-        </Row>
-        <div>
-          <Row className="justify-content-center">
-            <Search
-              className="bbtn"
-              label="Back"
-              handleClick={() => this.prevEvent()}
-              handleChange={this.state.isprevdisabled}
-            />
-            <Search
-              label="Next"
-              className="bbtn"
-              handleClick={() => this.nextEvent()}
-              handleChange={this.state.isnextdisabled}
-            />
-          </Row>
-        </div>
+      <Row className="justify-content-between align-items-center">
+      <Col md={5}>
+      <Card className="card-map card-raised">
+      <Card.Header className="card-rose">
+      <i className="fas fa-map-pin map-icon"></i> {event.location.address.street_address} {event.location.address.postal_code} {event.location.address.locality}<br />
+      <i className="fas fa-business-time map-icon"></i>{moment.utc(event.event_dates.starting_day).format("lll")} - &nbsp;
+      <i className="fas fa-history map-icon"></i>{moment.utc(event.event_dates.ending_day).format("lll")}
+      </Card.Header>
+      <Card.Body>
+      <h2>{event.name.fi}</h2>
+      <div dangerouslySetInnerHTML={{__html:event.description.body}}></div>
+      </Card.Body>
+      <Card.Footer>
+      <h6>{event.tags[0].name}</h6>
+      </Card.Footer>
+      </Card>
+      </Col>
+      <Col md={6}>
+      <EventMap className="map-leaflet" data={event.location}/>
+      </Col>
+      </Row>
+      <div>
+      <Row className="justify-content-center">
+      <Search label="" handleClick={()=>this.prevEvent()}  icon="fa fa-arrow-left" handleChange={this.state.isprevdisabled}/>
+      <Search label="" icon="fa fa-arrow-right" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
+      </Row>
+      </div>
       </div>
     );
   }

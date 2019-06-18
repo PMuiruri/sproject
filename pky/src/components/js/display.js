@@ -114,13 +114,13 @@ class Display extends Component {
   fetchTag = e => {
     let tag = e.target.value;
     console.log("react " + e.target.value);
-    fetch(`/tags?tag=${tag}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data: data });
-        this.renderData();
-      })
-      .catch(error => console.log(error));
+    fetch(`http://localhost:3030/tags?tag=${tag}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data, isloaded:true });
+      this.renderData();
+    })
+    .catch(error => console.log(error));
   };
   // function to fetch all events
   fetchAllEvents = () => {
@@ -173,42 +173,23 @@ class Display extends Component {
       tagArray = this.state.tags;
       return (
         <div className="wrapper">
-          <Header />
-          <Input
-            id="event"
-            placeholder="Search Events"
-            options={tagArray}
-            handleChange={this.fetchTag}
-            handleLocationChange={this.fetchLocation}
-          />
-          <Links
-            handleClick={this.fetchTag}
-            handleAll={() => this.nextResults()}
-          />
-          <div className="mt-4">
-            <div className="flex-container"> {events} </div>
-            {this.state.isloaded ? (
-              <Row className="justify-content-center">
-                <Search
-                  className="bbtn"
-                  label="Back"
-                  handleClick={() => this.prevResults()}
-                  handleChange={this.state.isprevdisabled}
-                />
-                <Search
-                  label="Next"
-                  className="bbtn"
-                  handleClick={() => this.nextResults()}
-                  handleChange={this.state.isnextdisabled}
-                />
-              </Row>
-            ) : (
-              <div className="carousel">
-                <ControlledCarousel carouselItems={carousels} />
-              </div>
-            )}
-          </div>
-          <FooterPagePro />
+        <Header />
+        <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
+        <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
+        <div className="mt-4">
+          <div className="flex-container"> {events} </div>
+          {this.state.isloaded ? (
+            <Row className="justify-content-center">
+            <Search icon="fa fa-arrow-left" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+            <Search  icon="fa fa-arrow-right" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
+            </Row>
+          ) : (
+            <div className="carousel">
+            <ControlledCarousel carouselItems={carousels} />
+            </div>
+          )}
+        </div>
+        <FooterPagePro />
         </div>
       );
     }
