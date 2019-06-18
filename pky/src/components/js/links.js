@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+import Row from "react-bootstrap/Row";
 import "../style/links.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
@@ -9,18 +9,18 @@ import "mdbreact/dist/css/mdb.css";
 class Links extends Component {
   render() {
     return (
-      <div>
-        <div className="link-container">
-          <ButtonToolbar className="body-links">
-            <Button variant="outline-danger" value="food"onClick={this.props.handleAll}>All</Button>
-            <Button variant="outline-primary" value="sports" onClick={this.props.handleClick}>Sports</Button>
-            <Button variant="outline-secondary" value="festivals" onClick={this.props.handleClick}>Festivals</Button>
-            <Button variant="outline-success" value="dance" onClick={this.props.handleClick}>Dance</Button>
-            <Button variant="outline-warning" value="music"onClick={this.props.handleClick}>Music</Button>
-            <Button variant="outline-danger" value="families"onClick={this.props.handleClick}>Families</Button>
-          </ButtonToolbar>
+      <Row>
+        <div className="col-md-12">
+          <div className="event-tags mx-auto">
+            <Button className="event-tags-tag btn-sm btn-round" value="food" onClick={this.props.handleAll}><i className="fas fa-align-left links-icon"></i> All</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="sports" onClick={this.props.handleClick}> <i className="fas fa-futbol links-icon"></i> Sports</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="festivals" onClick={this.props.handleClick}><i className="fas fa-glass-cheers links-icon"></i> Festivals</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="dance" onClick={this.props.handleClick}><i className="fas fa-microphone-alt links-icon"></i> Dance</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="music" onClick={this.props.handleClick}><i className="fas fa-drum links-icon"></i> Music</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="families" onClick={this.props.handleClick}><i className="fas fa-baby links-icon"></i> Families</Button>
+          </div>
         </div>
-      </div>
+      </Row>
     );
   }
 }

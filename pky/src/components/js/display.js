@@ -5,6 +5,7 @@ import Header from "./header.js";
 import Cards from "./cards.js";
 import ControlledCarousel from "./carousel.js";
 import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col';
 import Event from "./event.js";
 import Links from "./links.js";
 import FooterPagePro from "./Footer.js";
@@ -12,6 +13,8 @@ import "../style/search.css";
 import "../style/display.css";
 import "../style/carousel.css";
 import "../style/carousel.css";
+
+
 
 class Display extends Component {
   constructor(props) {
@@ -25,7 +28,7 @@ class Display extends Component {
       isloaded: false,
       singleEvent: false,
       eventId: 0,
-      resultCount:18,
+      resultCount:12,
       eventIndex: 0,
       isprevdisabled:false,
       isnextdisabled:false
@@ -157,22 +160,22 @@ class Display extends Component {
     if (typeof this.state.tags !== "undefined" && this.state.tags.length > 0) {
       tagArray = this.state.tags;
       return (
-        <div className="body">
+        <div className="wrapper">
         <Header />
         <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
         <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
-        <div>
-        <div className="flex-container"> {events} </div>
-        {this.state.isloaded ? (
-          <Row className="justify-content-center">
-          <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
-          <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
-          </Row>
-        ) : (
-          <div className="carousel">
-          <ControlledCarousel carouselItems={carousels} />
-          </div>
-        )}
+        <div className="mt-4">
+          <div className="flex-container"> {events} </div>
+          {this.state.isloaded ? (
+            <Row className="justify-content-center">
+            <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+            <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
+            </Row>
+          ) : (
+            <div className="carousel">
+            <ControlledCarousel carouselItems={carousels} />
+            </div>
+          )}
         </div>
         <FooterPagePro />
         </div>
