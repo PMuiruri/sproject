@@ -116,7 +116,7 @@ class Display extends Component {
     fetch(`http://localhost:3030/tags?tag=${tag}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({ data: data });
+      this.setState({ data: data, isloaded:true });
       this.renderData();
     })
     .catch(error => console.log(error));
@@ -168,8 +168,8 @@ class Display extends Component {
           <div className="flex-container"> {events} </div>
           {this.state.isloaded ? (
             <Row className="justify-content-center">
-            <Search className="bbtn"label="Back" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
-            <Search label="Next" className="bbtn" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
+            <Search icon="fa fa-arrow-left" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+            <Search  icon="fa fa-arrow-right" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
             </Row>
           ) : (
             <div className="carousel">
