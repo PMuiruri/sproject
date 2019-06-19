@@ -60,3 +60,9 @@
   border-color: hsla(0,0%,100%,.5);
   color: #fcfcfc;
 }
+
+.btn-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center !important; 
+}

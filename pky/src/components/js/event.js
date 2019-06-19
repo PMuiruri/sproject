@@ -6,7 +6,8 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Search from "./search.js";
 import Button from "react-bootstrap/Button";
-import "../style/cards.css"
+import "../style/cards.css";
+
 
 var eventS;
 class Event extends Component {
@@ -83,7 +84,7 @@ class Event extends Component {
       </Card.Body>
       <Card.Footer>
       <h6>{event.tags[0].name}</h6>
-      <a href="{event.info_url}" target="_blank" className="btn-simple btn btn-round">Visit Event site</a>
+      <a href={event.info_url} target="_blank" className="btn-simple btn btn-round">Visit Event site</a>
       
       </Card.Footer>
       </Card>
@@ -92,12 +93,17 @@ class Event extends Component {
       <EventMap className="map-leaflet" data={event.location}/>
       </Col>
       </Row>
-      <div>
+  
       <Row >
-      <Search label="" handleClick={()=>this.prevEvent()}  icon="fa fa-arrow-left" handleChange={this.state.isprevdisabled}/>
-      <Search label="" icon="fa fa-arrow-right" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
+        <Col md={6}>
+          <button className="btn btn-rose float-right" handleChange={this.state.isprevdisabled}><i className="fa fa-arrow-left"></i></button>
+         
+          
+        </Col>
+        <Col md={6}> <button className="btn btn-rose" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}><i className="fa fa-arrow-right"></i></button></Col>
+   
       </Row>
-      </div>
+    
       </div>
     );
   }
