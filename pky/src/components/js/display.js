@@ -137,7 +137,7 @@ class Display extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data, tags:Object.values(data.tags), type:"places" });
-        console.log(data);
+        console.log(this.state.data);
       })
       .catch(error => console.log(error));
     };
@@ -146,7 +146,8 @@ class Display extends Component {
         fetch("http://localhost:3030/activities")
         .then(response => response.json())
         .then(data => {
-          this.setState({ data: data });
+          this.setState({ data: data, tags:Object.values(data.tags), type:"activities" });
+          console.log(this.state.data);
         })
         .catch(error => console.log(error));
       };
@@ -159,6 +160,7 @@ class Display extends Component {
     var carousels = [];
     var events = [];
     var tagArray =[];
+    console.log("list: "+this.state.eventList);
     if (this.state.singleEvent === false) {
       if (typeof this.state.eventList !== "undefined" && this.state.eventList.length > 0) {
         events = this.state.eventList.map((event, index) => {
@@ -183,7 +185,7 @@ class Display extends Component {
         <div className="wrapper">
         <Header />
         <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
-        <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} />
+        <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} handlePlaces ={() =>this.nextResults()}/>
         <div className="mt-4">
           <div className="flex-container"> {events} </div>
           {this.state.isloaded ? (
