@@ -81,7 +81,6 @@ class Event extends Component {
       </Card.Body>
       <Card.Footer>
       <h6>{event.tags[0].name}</h6>
-      <>
       <p>Link: {event.info_url}</p>
       </Card.Footer>
       </Card>
