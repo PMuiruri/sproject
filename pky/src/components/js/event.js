@@ -5,6 +5,8 @@ import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Search from "./search.js";
+import Button from "react-bootstrap/Button";
+import "../style/cards.css"
 
 var eventS;
 class Event extends Component {
@@ -67,8 +69,8 @@ class Event extends Component {
     }
     return (
       <div className="container-fluid">
-      <Row className="justify-content-between align-items-center">
-      <Col md={5}>
+      <Row className="">
+      <Col md={6}>
       <Card className="card-map card-raised">
       <Card.Header className="card-rose">
       <i className="fas fa-map-pin map-icon"></i> {event.location.address.street_address} {event.location.address.postal_code} {event.location.address.locality}<br />
@@ -81,7 +83,8 @@ class Event extends Component {
       </Card.Body>
       <Card.Footer>
       <h6>{event.tags[0].name}</h6>
-      <p>Link: {event.info_url}</p>
+      <a href="{event.info_url}" className="btn-simple btn btn-round">Visit Event site</a>
+      
       </Card.Footer>
       </Card>
       </Col>
@@ -90,7 +93,7 @@ class Event extends Component {
       </Col>
       </Row>
       <div>
-      <Row className="justify-content-center">
+      <Row >
       <Search label="" handleClick={()=>this.prevEvent()}  icon="fa fa-arrow-left" handleChange={this.state.isprevdisabled}/>
       <Search label="" icon="fa fa-arrow-right" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
       </Row>

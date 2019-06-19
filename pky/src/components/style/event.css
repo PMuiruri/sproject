@@ -53,3 +53,10 @@
   margin-right: 5px !important;
   font-size: .75rem !important;
 }
+
+
+.btn-simple {
+  background-color: transparent;
+  border-color: hsla(0,0%,100%,.5);
+  color: #fcfcfc;
+}
