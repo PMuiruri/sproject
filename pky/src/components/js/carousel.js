@@ -38,6 +38,7 @@ class ControlledCarousel extends React.Component {
           </div>
           <div className="col-md-6">
             <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect} >
+              {this.props.type}
               {this.props.carouselItems.map((event , index)=>{
                 return(
                   <Carousel.Item key={index}>
@@ -46,7 +47,8 @@ class ControlledCarousel extends React.Component {
                       : <img className="d-block w-100" src="images/altImage1.jpg" alt='events happening' />}
                       <Carousel.Caption>
                         <h2>{event.name.fi}</h2>
-                        <h3>{(event.event_dates.starting_day).split("T")[0]} </h3>
+                        {this.props.type === "event"?
+                          <h3>{(event.event_dates.starting_day).split("T")[0]} </h3>:  <h3>{event.opening_hours.hours.opens}</h3>}
                       </Carousel.Caption>
                   </Carousel.Item>
                   )
