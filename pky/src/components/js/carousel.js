@@ -43,12 +43,17 @@ class ControlledCarousel extends React.Component {
                 return(
                   <Carousel.Item key={index}>
                     {event.description.images.length >0 ?
-                      (  <img className="d-block w-100" src={event.description.images[0].url}  alt='events around' /> )
+                      (<img className="d-block w-100" src={event.description.images[0].url}  alt='events around' /> )
                       : <img className="d-block w-100" src="images/altImage1.jpg" alt='events happening' />}
                       <Carousel.Caption>
                         <h2>{event.name.fi}</h2>
-                        {this.props.type === "event"?
-                          <h3>{(event.event_dates.starting_day).split("T")[0]} </h3>:  <h3>{event.opening_hours.hours.opens}</h3>}
+                        { this.props.type === "event"
+                          ? <p>Events {event.event_dates.starting_day}</p>
+                          : ( this.props.type === "places"
+                          ? <p>{event.opening_hours.hours[0].opens}</p>
+                          : <p>{event.where_when_duration.where_and_when}</p>
+                        )
+                      }
                       </Carousel.Caption>
                   </Carousel.Item>
                   )
