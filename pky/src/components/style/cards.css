@@ -1,4 +1,3 @@
-
 .card {
   padding: 10px;
   margin: 20px;
@@ -6,7 +5,10 @@
 }
 
 .card-event {
-  margin-top: 30px !important
+  margin-top: 30px !important;
+  display: flex !important;
+  align-items: stretch !important;
+  height: 33em;
 }
 
 .card {
@@ -27,8 +29,12 @@
   z-index: 1;
   margin-left: 0px !important;
   margin-right: 15px;
-  margin-top: -30px;
+  margin-top: -20px;
   border-radius: 6px;
+  height: 250px;
+  width: 100%;
+  align-items: stretch !important;
+  display: block;
 }
 
 .card .card-header.card-header-image .img-shadow {
@@ -47,6 +53,10 @@
 .event-title {
   color: #3c4858 !important;
   font-weight: 700 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 3.1em;
 }
 
 .event-venue {
@@ -61,9 +71,10 @@
 
 .truncate {
   height: 4.2em;
-  /* white-space: nowrap;*/
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
 }
 
 .btn.btn-round {
