@@ -93,11 +93,12 @@ app.get("/location", async (req, res, next) => {
 app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
-https.createServer(
+https
+  .createServer(
     {
       key: fs.readFileSync("server.key"),
       cert: fs.readFileSync("server.cert")
-    },0
+    },
     app
   )
   .listen(port, function() {
