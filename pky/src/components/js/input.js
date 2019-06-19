@@ -12,7 +12,7 @@ class Input extends Component {
     return (
       <div className = "input" >
       <Form.Group controlId = "exampleForm.ControlSelect1" >
-      <Form.Control as = "select" onChange={this.props.handleLocationChange}>
+      <Form.Control as = "select" onChange={this.props.handleLocationChange} className="event-selector">
       <option value=""> Search by Location< /option>
       return (
           <option value="Helsinki"> Helsinki < /option>

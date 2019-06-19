@@ -1,57 +1,67 @@
-import React, { Component } from 'react';
-import EventMap from './eventMap.js';
-import moment from 'moment';
+import React, { Component } from "react";
+import EventMap from "./eventMap.js";
+import moment from "moment";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import Col from 'react-bootstrap/Col';
-import Search from './search.js'
+import Col from "react-bootstrap/Col";
+import Search from "./search.js";
 
 var eventS;
 class Event extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      isprevdisabled:false,
-      isnextdisabled:false,
+    this.state = {
+      isprevdisabled: false,
+      isnextdisabled: false,
       eventIndex: 0
-    }
+    };
   }
   //function to navigate to next single event
-  nextEvent () {
-    if(this.state.eventIndex < this.props.dataSet.length){
-      this.setState({eventIndex: this.state.eventIndex+1,
-       isprevdisabled:false})
-    } else{
-      this.setState({isnextdisabled:true});
+  nextEvent() {
+    if (this.state.eventIndex < this.props.dataSet.length) {
+      this.setState({
+        eventIndex: this.state.eventIndex + 1,
+        isprevdisabled: false
+      });
+    } else {
+      this.setState({ isnextdisabled: true });
     }
   }
   //function to navigate to previous single event
-  prevEvent () {
-    if(this.state.eventIndex >= 0){
-      this.setState({eventIndex: this.state.eventIndex-1,
-      isnextdisabled:false})
+  prevEvent() {
+    if (this.state.eventIndex >= 0) {
+      this.setState({
+        eventIndex: this.state.eventIndex - 1,
+        isnextdisabled: false
+      });
     } else {
-      this.setState({isprevdisabled:true})
+      this.setState({ isprevdisabled: true });
     }
   }
   //function to filter data set to find the exact index of the event to be rendered
-  renderData () {
-    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+  renderData() {
+    if (
+      typeof this.props.dataSet !== "undefined" &&
+      this.props.dataSet.length > 0
+    ) {
       eventS = this.props.dataSet.findIndex(obj => {
         return obj.id === this.props.id;
-      })
-      this.setState({eventIndex:eventS});
+      });
+      this.setState({ eventIndex: eventS });
     }
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     window.scrollTo(0, 0);
-    console.log("index: "+this.state.eventIndex);
+    console.log("index: " + this.state.eventIndex);
   }
   render() {
-    var event={};
+    var event = {};
     console.log(this.props.id);
     console.log(this.props.dataSet);
-    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+    if (
+      typeof this.props.dataSet !== "undefined" &&
+      this.props.dataSet.length > 0
+    ) {
       event = this.props.dataSet[this.state.eventIndex];
       console.log(event);
     }
@@ -80,8 +90,8 @@ class Event extends Component {
       </Row>
       <div>
       <Row className="justify-content-center">
-      <Search className="bbtn"label="Back" handleClick={()=>this.prevEvent()}  handleChange={this.state.isprevdisabled}/>
-      <Search label="Next" className="bbtn" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
+      <Search label="" handleClick={()=>this.prevEvent()}  icon="fa fa-arrow-left" handleChange={this.state.isprevdisabled}/>
+      <Search label="" icon="fa fa-arrow-right" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
       </Row>
       </div>
       </div>
