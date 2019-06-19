@@ -23,7 +23,7 @@ return (
         <i className="fas fa-business-time event-icon"></i>{moment.utc(this.props.event.event_dates.starting_day).format("lll")}
       </Card.Text>
       {this.props.event.event_dates.ending_day != null?
-        <Card.Text><i className="fas fa-history event-icon"></i>{moment.utc(this.props.event.event_dates.ending_day).format("ll")}</Card.Text>:  null}
+        <Card.Text><i className="fas fa-history event-icon"></i>{moment.utc(this.props.event.event_dates.ending_day).format("ll")}</Card.Text>: <i className="fas fa-history event-icon"></i> }
 
       <Card.Text className="truncate">{this.props.event.description.intro}</Card.Text>
       <Button variant="primary" className="btn-rose btn btn-round" onClick={this.handleClick}>More Details</Button>
