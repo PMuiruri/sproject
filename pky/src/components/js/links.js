@@ -12,7 +12,8 @@ class Links extends Component {
       <Row>
         <div className="col-md-12">
           <div className="event-tags mx-auto">
-            <Button className="event-tags-tag btn-sm btn-round" value="food" onClick={this.props.handleAll}><i className="fas fa-align-left links-icon"></i> All</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="food" onClick={this.props.handleAll}><i className="fas fa-align-left links-icon"></i> Events</Button>
+            <Button className="event-tags-tag btn-sm btn-round" value="food" onClick={this.props.handlePlaces}><i className="fas fa-align-left links-icon"></i> Places</Button>
             <Button className="event-tags-tag btn-sm btn-round" value="sports" onClick={this.props.handleClick}> <i className="fas fa-futbol links-icon"></i> Sports</Button>
             <Button className="event-tags-tag btn-sm btn-round" value="festivals" onClick={this.props.handleClick}><i className="fas fa-glass-cheers links-icon"></i> Festivals</Button>
             <Button className="event-tags-tag btn-sm btn-round" value="dance" onClick={this.props.handleClick}><i className="fas fa-microphone-alt links-icon"></i> Dance</Button>
