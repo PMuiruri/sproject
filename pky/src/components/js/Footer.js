@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../style/footer.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { Link } from "react-router-dom";
 
 class FooterPagePro extends Component {
   render() {
@@ -22,16 +23,14 @@ class FooterPagePro extends Component {
                 </li>{" "}
                 /
                 <li>
-                  <a href="/about" className="footer-link">
-                    About
-                  </a>
+                  <Link to="/AboutUs">About</Link>
                 </li>
               </ul>
             </div>
             <div className="col-md-3">
               <ul className="footer-social pull-right">
                 <li>
-                  <a href="/github">
+                  <a href="https://github.com/PMuiruri/sproject">
                     <i className="fab fa-github footer-icon" /> Github
                   </a>
                 </li>
