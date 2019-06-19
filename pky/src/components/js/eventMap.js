@@ -19,7 +19,7 @@ type State = {
 
 export default class EventMap extends Component<{}, State> {
   state = {
-    zoom: 16
+    zoom: 14
   };
 
   render() {

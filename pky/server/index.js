@@ -1,10 +1,14 @@
 const express = require("express");
+const fs = require("fs");
+const https = require("https");
 const app = express();
-const port = 3030;
+const port = 3000;
+const path = require("path");
 const axios = require("axios");
 const CircularJSON = require("circular-json");
 
-//function to get all events from the api
+app.use(express.static(path.join(__dirname, "../build")));
+
 const getAllEvents = () => {
   try {
     return axios
@@ -14,7 +18,6 @@ const getAllEvents = () => {
     console.error("Axios error: " + error);
   }
 };
-//function to get events based on tags
 const getTagSearch = tag => {
   try {
     console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`);
@@ -27,7 +30,6 @@ const getTagSearch = tag => {
     console.error("Axios error: " + error);
   }
 };
-//function to get all events based on location
 const getLocation = (lat, long) => {
   try {
     console.log(
@@ -42,7 +44,6 @@ const getLocation = (lat, long) => {
     console.error("Axios error: " + error);
   }
 };
-// function to get results and filter based on the locality
 // const getLocality =(locality)=>{
 //   try {
 //     return axios
@@ -56,7 +57,7 @@ const getLocation = (lat, long) => {
 //   }
 // };
 
-app.get("/", async (req, res, next) => {
+app.get("/events", async (req, res, next) => {
   try {
     const events = await getAllEvents();
     res.header("Access-Control-Allow-Origin", "*");
@@ -89,4 +90,19 @@ app.get("/location", async (req, res, next) => {
   }
 });
 
-app.listen(port, () => console.log("Server running in port: " + port));
+app.get("/*", function(req, res) {
+  res.sendFile(path.join(__dirname, "../build", "index.html"));
+});
+https
+  .createServer(
+    {
+      key: fs.readFileSync("server.key"),
+      cert: fs.readFileSync("server.cert")
+    },
+    app
+  )
+  .listen(port, function() {
+    console.log(
+      `app listening on port ${port} Go to https://localhost:${port}/`
+    );
+  });

@@ -102,7 +102,7 @@ class Display extends Component {
       long = "25.040070";
     }
     console.log("react " + lat, long);
-    fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
+    fetch(`/location?lat=${lat}&long=${long}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data });
@@ -114,17 +114,17 @@ class Display extends Component {
   fetchTag = e => {
     let tag = e.target.value;
     console.log("react " + e.target.value);
-    fetch(`http://localhost:3030/tags?tag=${tag}`)
+    fetch(`/tags?tag=${tag}`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ data: data });
+        this.setState({ data: data, isloaded: true });
         this.renderData();
       })
       .catch(error => console.log(error));
   };
   // function to fetch all events
   fetchAllEvents = () => {
-    fetch("http://localhost:3030/")
+    fetch("/events")
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data, tags: Object.values(data.tags) });
@@ -190,14 +190,12 @@ class Display extends Component {
             {this.state.isloaded ? (
               <Row className="justify-content-center">
                 <Search
-                  className="bbtn"
-                  label="Back"
+                  icon="fa fa-arrow-left"
                   handleClick={() => this.prevResults()}
                   handleChange={this.state.isprevdisabled}
                 />
                 <Search
-                  label="Next"
-                  className="bbtn"
+                  icon="fa fa-arrow-right"
                   handleClick={() => this.nextResults()}
                   handleChange={this.state.isnextdisabled}
                 />

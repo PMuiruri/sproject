@@ -19,11 +19,11 @@ return (
     <Card.Body>
       <Card.Title className="event-title">{this.props.event.name.fi}</Card.Title>
       <Card.Text className="event-venue"><i className="fas fa-map-pin event-icon"></i>{this.props.event.location.address.locality}</Card.Text>
-      <Card.Text className = "event-venue">
+      <Card.Text className = "event-venue mbtm-1">
         <i className="fas fa-business-time event-icon"></i>{moment.utc(this.props.event.event_dates.starting_day).format("lll")}
       </Card.Text>
       {this.props.event.event_dates.ending_day != null?
-        <Card.Text><i className="fas fa-history event-icon"></i>{moment.utc(this.props.event.event_dates.ending_day).format("ll")}</Card.Text>:  null}
+        <Card.Text><i className="fas fa-history event-icon"></i>{moment.utc(this.props.event.event_dates.ending_day).format("ll")}</Card.Text>: <i className="fas fa-history event-icon"></i> }
 
       <Card.Text className="truncate">{this.props.event.description.intro}</Card.Text>
       <Button variant="primary" className="btn-rose btn btn-round" onClick={this.handleClick}>More Details</Button>

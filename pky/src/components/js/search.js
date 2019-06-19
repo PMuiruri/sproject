@@ -8,13 +8,13 @@ class Search extends Component {
       <div>
         <ButtonToolbar>
           <Button
-            className={this.props.className}
+            className="btn btn-round"
             variant="primary"
             size="lg"
             onClick={this.props.handleClick}
             value={this.props.id}
             disabled={this.props.handleChange}
-          >
+          ><i className={this.props.icon}></i>
             {this.props.label}
           </Button>
         </ButtonToolbar>
