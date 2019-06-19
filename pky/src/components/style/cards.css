@@ -8,7 +8,7 @@
   margin-top: 30px !important;
   display: flex !important;
   align-items: stretch !important;
-  height: 33em;
+  height: 23em; 
 }
 
 .card {
@@ -31,7 +31,7 @@
   margin-right: 15px;
   margin-top: -20px;
   border-radius: 6px;
-  height: 250px;
+  height: auto;
   width: 100%;
   align-items: stretch !important;
   display: block;
@@ -56,7 +56,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 3.1em;
+  /*height: 3.1em;*/
 }
 
 .event-venue {
@@ -70,7 +70,7 @@
 }
 
 .truncate {
-  height: 4.2em;
+  /*height: 4.2em;*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -86,4 +86,8 @@
   background-color: #e91e63 !important;
   border-color: #e91e63 !important;
   box-shadow: 0 2px 2px 0 rgba(233, 30, 99, .14), 0 3px 1px -2px rgba(233, 30, 99, .2), 0 1px 5px 0 rgba(233, 30, 99, .12) !important;
+}
+
+.mbtm-1 {
+  margin-bottom: 1px !important;
 }

@@ -83,7 +83,7 @@ class Event extends Component {
       </Card.Body>
       <Card.Footer>
       <h6>{event.tags[0].name}</h6>
-      <a href="{event.info_url}" className="btn-simple btn btn-round">Visit Event site</a>
+      <a href="{event.info_url}" target="_blank" className="btn-simple btn btn-round">Visit Event site</a>
       
       </Card.Footer>
       </Card>
