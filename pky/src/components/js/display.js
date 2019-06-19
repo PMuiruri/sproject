@@ -31,7 +31,8 @@ class Display extends Component {
       resultCount:12,
       eventIndex: 0,
       isprevdisabled:false,
-      isnextdisabled:false
+      isnextdisabled:false,
+      type:""
     };
   }
   //function to render the next set of results
@@ -123,16 +124,35 @@ class Display extends Component {
   };
 // function to fetch all events
   fetchAllEvents = () => {
-    fetch("http://localhost:3030/")
+    fetch("http://localhost:3030/events")
     .then(response => response.json())
     .then(data => {
-      this.setState({ data: data, tags:Object.values(data.tags) });
+      this.setState({ data: data, tags:Object.values(data.tags), type:"events" });
     })
     .catch(error => console.log(error));
   };
+  // function to fetch all events
+    fetchAllPlaces = () => {
+      fetch("http://localhost:3030/places")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ data: data, tags:Object.values(data.tags), type:"places" });
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+    };
+    // function to fetch all events
+      fetchAllActivities = () => {
+        fetch("http://localhost:3030/activities")
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ data: data });
+        })
+        .catch(error => console.log(error));
+      };
 //function to load data at the beginning of the app
   componentDidMount() {
-    this.fetchAllEvents();
+    this.fetchAllPlaces();
   }
 
   render() {
@@ -144,7 +164,7 @@ class Display extends Component {
         events = this.state.eventList.map((event, index) => {
           return (
             <div key={index}>
-            <Cards event={event} moreDetails={this.moreDetails} />
+            <Cards event={event} moreDetails={this.moreDetails} type={this.state.type} />
             </div>
           );
         });
@@ -173,7 +193,7 @@ class Display extends Component {
             </Row>
           ) : (
             <div className="carousel">
-            <ControlledCarousel carouselItems={carousels} />
+            <ControlledCarousel carouselItems={carousels} type={this.state.type}/>
             </div>
           )}
         </div>

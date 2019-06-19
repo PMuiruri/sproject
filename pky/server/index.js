@@ -14,6 +14,26 @@ const getAllEvents = () => {
     console.error("Axios error: " + error);
   }
 };
+//function to get all events from the api
+const getAllPlaces = () => {
+  try {
+    return axios
+      .get("http://open-api.myhelsinki.fi/v1/places/?limit=100")
+      .then(response => CircularJSON.stringify(response.data));
+  } catch (error) {
+    console.error("Axios error: " + error);
+  }
+};
+//function to get all events from the api
+const getAllActivities = () => {
+  try {
+    return axios
+      .get("http://open-api.myhelsinki.fi/v1/activities/?limit=100")
+      .then(response => CircularJSON.stringify(response.data));
+  } catch (error) {
+    console.error("Axios error: " + error);
+  }
+};
 //function to get events based on tags
 const getTagSearch = (tag) => {
   try {
@@ -50,7 +70,7 @@ const getLocation = (lat,long) => {
 //   }
 // };
 
-app.get("/", async (req, res, next) => {
+app.get("/events", async (req, res, next) => {
   try {
     const events = await getAllEvents();
     res.header("Access-Control-Allow-Origin", "*");
@@ -59,7 +79,24 @@ app.get("/", async (req, res, next) => {
     next(error);
   }
 });
-
+app.get("/places", async (req, res, next) => {
+  try {
+    const events = await getAllPlaces();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json(JSON.parse(events));
+  } catch (error) {
+    next(error);
+  }
+});
+app.get("/activities", async (req, res, next) => {
+  try {
+    const events = await getAllActivities();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json(JSON.parse(events));
+  } catch (error) {
+    next(error);
+  }
+});
 app.get("/tags", async (req, res, next) => {
   console.log("Query "+req.query.tag);
   try {
