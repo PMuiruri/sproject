@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
-const port = 3000;
-const path = require('path');
+const port = 3030;
 const axios = require("axios");
 const CircularJSON = require("circular-json");
 
-app.use(express.static(path.join(__dirname, '../build')));
-
+//function to get all events from the api
 const getAllEvents = () => {
   try {
     return axios
@@ -16,6 +14,7 @@ const getAllEvents = () => {
     console.error("Axios error: " + error);
   }
 };
+//function to get events based on tags
 const getTagSearch = (tag) => {
   try {
       console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`)
@@ -26,6 +25,7 @@ const getTagSearch = (tag) => {
     console.error("Axios error: " + error);
   }
 };
+//function to get all events based on location
 const getLocation = (lat,long) => {
   try {
       console.log(`http://open-api.myhelsinki.fi/v1/events/?distance_filter=${lat},${long},10`)
@@ -36,6 +36,7 @@ const getLocation = (lat,long) => {
     console.error("Axios error: " + error);
   }
 };
+// function to get results and filter based on the locality
 // const getLocality =(locality)=>{
 //   try {
 //     return axios
@@ -81,6 +82,5 @@ app.get("/location", async (req, res, next) => {
     next(error);
   }
 });
-
 
 app.listen(port, () => console.log("Server running in port: " + port));

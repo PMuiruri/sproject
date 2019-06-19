@@ -102,7 +102,7 @@ class Display extends Component {
       long = "25.040070";
     }
     console.log("react " + lat, long);
-    fetch(`/location?lat=${lat}&long=${long}`)
+    fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data });
@@ -124,7 +124,7 @@ class Display extends Component {
   };
   // function to fetch all events
   fetchAllEvents = () => {
-    fetch("/events")
+    fetch("http://localhost:3030/")
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data, tags: Object.values(data.tags) });
