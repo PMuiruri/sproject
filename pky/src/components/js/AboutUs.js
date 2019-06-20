@@ -9,7 +9,24 @@ class AboutUs extends Component {
     return (
       <div>
         <Header />
-        <div className="about-container">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="images/Full-Stack-Developers.png" alt="business college helsinki" className="img-thumbnail" />
+            </div>
+            <div className="col-md-6 mt-5">
+              <h1 className="title text-white">About Us</h1>
+            <p className="text-white">
+                  We are students who are enthusiastic to learn full stack
+                  development. This application is our summer project 2019 by
+                  using MyHesinkiAPI to introduce events in Helsinki.
+                  </p>
+              
+
+            </div>
+          </div>
+        </div>
+        {/* <div className="about-container">
           <Media>
             <img
               width={201}
@@ -27,7 +44,7 @@ class AboutUs extends Component {
               </p>
             </Media.Body>
           </Media>
-        </div>
+        </div> */}
         <FooterPagePro />
       </div>
     );

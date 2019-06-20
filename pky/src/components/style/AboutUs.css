@@ -27,3 +27,8 @@ hr {
 hr.line-success {
     background-color: #e91e63 !important;
 }
+
+.img-thumbnail{
+    background: none !important;
+    border: none !important;
+}
