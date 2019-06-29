@@ -2,10 +2,8 @@ import React from "react";
 import "../style/carousel.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Carousel from 'react-bootstrap/Carousel';
+import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
-
-
 
 class ControlledCarousel extends React.Component {
   constructor(props, context) {
@@ -15,17 +13,16 @@ class ControlledCarousel extends React.Component {
 
     this.state = {
       index: 0,
-      direction: null,
+      direction: null
     };
   }
 
   handleSelect(selectedIndex, e) {
     this.setState({
       index: selectedIndex,
-      direction: e.direction,
+      direction: e.direction
     });
   }
-
   render() {
     const { index, direction } = this.state;
     return (
@@ -33,8 +30,18 @@ class ControlledCarousel extends React.Component {
         <Row className="justify-content-between align-items-center vh-60">
           <div className="col-md-5">
             <h1 className="text-white">Events Happening Around you!</h1>
-            <p className="text-white">We fetch the web to find you events that are happening around you - particularly in Helsinki, Vantaa and Espoo.</p>
-            <Button className="btn-sm btn-round" value="food" onClick={this.props.handleAll}><i className="fas fa-align-left links-icon"></i> View Featured Events</Button>
+            <p className="text-white">
+              We fetch the web to find you events that are happening around you
+              - particularly in Helsinki, Vantaa and Espoo.
+            </p>
+            <Button
+              className="btn-sm btn-round"
+              value="food"
+              onClick={this.props.handleAll}
+            >
+              <i className="fas fa-align-left links-icon" /> View Featured
+              Events
+            </Button>
           </div>
           <div className="col-md-6">
             <Carousel activeIndex={index} direction={direction} onSelect={this.handleSelect} >
@@ -56,19 +63,16 @@ class ControlledCarousel extends React.Component {
                       }
                       </Carousel.Caption>
                   </Carousel.Item>
-                  )
-                }) }
+                );
+              })}
             </Carousel>
           </div>
         </Row>
       </Container>
 
       // container
-
     );
   }
 }
-
-
 
 export default ControlledCarousel;

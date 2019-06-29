@@ -1,0 +1,29 @@
+.about-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 11%;
+    color: #FCFCFC;
+}
+
+.media_body {
+    margin: 10px;
+    width: 500px;
+    height: 200px;
+}
+
+.pic_HBC {
+    margin-right: 20px;
+}
+
+hr {
+    width: 10%;
+    height: 1px;
+    border-radius: 3px;
+    margin-left: 0;
+}
+
+hr.line-success {
+    background-color: #e91e63 !important;
+}

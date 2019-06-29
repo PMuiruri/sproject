@@ -35,22 +35,28 @@ const getAllActivities = () => {
   }
 };
 //function to get events based on tags
-const getTagSearch = (tag) => {
+const getTagSearch = tag => {
   try {
-      console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`)
+    console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`);
     return axios
-      .get(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}&limit=100`)
+      .get(
+        `http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}&limit=100`
+      )
       .then(response => CircularJSON.stringify(response.data));
   } catch (error) {
     console.error("Axios error: " + error);
   }
 };
 //function to get all events based on location
-const getLocation = (lat,long) => {
+const getLocation = (lat, long) => {
   try {
-      console.log(`http://open-api.myhelsinki.fi/v1/events/?distance_filter=${lat},${long},10`)
+    console.log(
+      `http://open-api.myhelsinki.fi/v1/events/?distance_filter=${lat},${long},10`
+    );
     return axios
-      .get(`http://open-api.myhelsinki.fi/v1/events/?distance_filter=${lat},${long},10&limit=100`)
+      .get(
+        `http://open-api.myhelsinki.fi/v1/events/?distance_filter=${lat},${long},10&limit=100`
+      )
       .then(response => CircularJSON.stringify(response.data));
   } catch (error) {
     console.error("Axios error: " + error);
@@ -98,7 +104,7 @@ app.get("/activities", async (req, res, next) => {
   }
 });
 app.get("/tags", async (req, res, next) => {
-  console.log("Query "+req.query.tag);
+  console.log("Query " + req.query.tag);
   try {
     const events = await getTagSearch(req.query.tag);
     res.header("Access-Control-Allow-Origin", "*");
@@ -108,8 +114,8 @@ app.get("/tags", async (req, res, next) => {
   }
 });
 app.get("/location", async (req, res, next) => {
-  console.log("Query "+req.query.lat);
-  console.log("Query "+req.query.long);
+  console.log("Query " + req.query.lat);
+  console.log("Query " + req.query.long);
   try {
     const events = await getLocation(req.query.lat, req.query.long);
     //const events = await getLocation();

@@ -1,6 +1,4 @@
 .wrapper {
-  background-image: url('/images/dots.png') !important;
-  background-size: contain !important;
   height: 100vh;
 }
 

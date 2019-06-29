@@ -1,64 +1,77 @@
-import React, { Component } from 'react';
-import EventMap from './eventMap.js';
-import moment from 'moment';
+import React, { Component } from "react";
+import EventMap from "./eventMap.js";
+import moment from "moment";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import Col from 'react-bootstrap/Col';
-import Search from './search.js'
+import Col from "react-bootstrap/Col";
+import Search from "./search.js";
+import Button from "react-bootstrap/Button";
+import "../style/cards.css";
+
 
 var eventS;
 class Event extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      isprevdisabled:false,
-      isnextdisabled:false,
+    this.state = {
+      isprevdisabled: false,
+      isnextdisabled: false,
       eventIndex: 0
-    }
+    };
   }
   //function to navigate to next single event
-  nextEvent () {
-    if(this.state.eventIndex < this.props.dataSet.length){
-      this.setState({eventIndex: this.state.eventIndex+1,
-       isprevdisabled:false})
-    } else{
-      this.setState({isnextdisabled:true});
+  nextEvent() {
+    if (this.state.eventIndex < this.props.dataSet.length) {
+      this.setState({
+        eventIndex: this.state.eventIndex + 1,
+        isprevdisabled: false
+      });
+    } else {
+      this.setState({ isnextdisabled: true });
     }
   }
   //function to navigate to previous single event
-  prevEvent () {
-    if(this.state.eventIndex >= 0){
-      this.setState({eventIndex: this.state.eventIndex-1,
-      isnextdisabled:false})
+  prevEvent() {
+    if (this.state.eventIndex >= 0) {
+      this.setState({
+        eventIndex: this.state.eventIndex - 1,
+        isnextdisabled: false
+      });
     } else {
-      this.setState({isprevdisabled:true})
+      this.setState({ isprevdisabled: true });
     }
   }
   //function to filter data set to find the exact index of the event to be rendered
-  renderData () {
-    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+  renderData() {
+    if (
+      typeof this.props.dataSet !== "undefined" &&
+      this.props.dataSet.length > 0
+    ) {
       eventS = this.props.dataSet.findIndex(obj => {
         return obj.id === this.props.id;
-      })
-      this.setState({eventIndex:eventS});
+      });
+      this.setState({ eventIndex: eventS });
     }
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     window.scrollTo(0, 0);
-    console.log("index: "+this.state.eventIndex);
+    console.log("index: " + this.state.eventIndex);
   }
   render() {
-    var event={};
+    var event = {};
     console.log(this.props.id);
     console.log(this.props.dataSet);
-    if (typeof this.props.dataSet !== "undefined" && this.props.dataSet.length > 0) {
+    if (
+      typeof this.props.dataSet !== "undefined" &&
+      this.props.dataSet.length > 0
+    ) {
       event = this.props.dataSet[this.state.eventIndex];
       console.log(event);
     }
     return (
       <div className="container-fluid">
-      <Row className="justify-content-between align-items-center">
-      <Col md={5}>
+      <Row className="">
+      <Col md={6}>
       <Card className="card-map card-raised">
       <Card.Header className="card-rose">
       <i className="fas fa-map-pin map-icon"></i> {event.location.address.street_address} {event.location.address.postal_code} {event.location.address.locality}<br />
@@ -71,6 +84,8 @@ class Event extends Component {
       </Card.Body>
       <Card.Footer>
       <h6>{event.tags[0].name}</h6>
+      <a href={event.info_url} target="_blank" className="btn-simple btn btn-round">Visit Event site</a>
+      
       </Card.Footer>
       </Card>
       </Col>
@@ -78,12 +93,17 @@ class Event extends Component {
       <EventMap className="map-leaflet" data={event.location}/>
       </Col>
       </Row>
-      <div>
-      <Row className="justify-content-center">
-      <Search label="" handleClick={()=>this.prevEvent()}  icon="fa fa-arrow-left" handleChange={this.state.isprevdisabled}/>
-      <Search label="" icon="fa fa-arrow-right" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}/>
+  
+      <Row >
+        <Col md={6}>
+          <button className="btn btn-rose float-right" handleChange={this.state.isprevdisabled}><i className="fa fa-arrow-left"></i></button>
+         
+          
+        </Col>
+        <Col md={6}> <button className="btn btn-rose" handleClick={()=>this.nextEvent()} handleChange={this.state.isnextdisabled}><i className="fa fa-arrow-right"></i></button></Col>
+   
       </Row>
-      </div>
+    
       </div>
     );
   }

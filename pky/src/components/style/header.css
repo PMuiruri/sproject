@@ -1,21 +1,27 @@
+@media only screen and (max-width: 400px) {
+   body {
+      background-color: lightblue !important;
+   }
+}
+
 .navbar-transparent {
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    width: 100%;
-    border: 0;
-    background-color: transparent;
-    box-shadow: none;
- }
- 
- .navbar {
-    box-shadow: none !important;
- }
- 
- .navbar-brand {
-    color: #fcfcfc !important;
- }
- 
- .nav-link {
-    color: #fcfcfc !important;
- }
+   position: absolute;
+   z-index: 100;
+   top: 0;
+   width: 100%;
+   border: 0;
+   background-color: transparent;
+   box-shadow: none;
+}
+
+.navbar {
+   box-shadow: none !important;
+}
+
+.navbar-brand {
+   color: #fcfcfc !important;
+}
+
+.nav-link {
+   color: #fcfcfc !important;
+}
