@@ -104,12 +104,12 @@ class Display extends Component {
     }
     console.log("react " + lat, long);
     fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data: data });
-        this.renderData();
-      })
-      .catch(error => console.log(error));
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data });
+      this.renderData();
+    })
+    .catch(error => console.log(error));
   };
   // function to fecth based on a tag name
   fetchTag = e => {
@@ -133,26 +133,29 @@ class Display extends Component {
     .catch(error => console.log(error));
   };
   // function to fetch all events
-    fetchAllPlaces = () => {
-      fetch("http://localhost:3030/places")
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data: data, tags:Object.values(data.tags), type:"places" });
-        console.log(this.state.data);
-      })
-      .catch(error => console.log(error));
-    };
-    // function to fetch all events
-      fetchAllActivities = () => {
-        fetch("http://localhost:3030/activities")
-        .then(response => response.json())
-        .then(data => {
-          this.setState({ data: data, tags:Object.values(data.tags), type:"activities" });
-          console.log(this.state.data);
-        })
-        .catch(error => console.log(error));
-      };
-//function to load data at the beginning of the app
+  fetchAllPlaces = e => {
+    let endpoint = 'places';
+    console.log(endpoint);
+    console.log(`http://localhost:3030/${endpoint}`)
+    fetch(`http://localhost:3030/places/${endpoint}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data, tags:Object.values(data.tags), type:"places" });
+      console.log(this.state.data);
+    })
+    .catch(error => console.log(error));
+  };
+  // function to fetch all events
+  fetchAllActivities = () => {
+    fetch("http://localhost:3030/activities")
+    .then(response => response.json())
+    .then(data => {
+      this.setState({ data: data, tags:Object.values(data.tags), type:"activities" });
+      console.log(this.state.data);
+    })
+    .catch(error => console.log(error));
+  };
+  //function to load data at the beginning of the app
   componentDidMount() {
     this.fetchAllEvents();
   }
@@ -198,17 +201,17 @@ class Display extends Component {
         <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
         <Links handleClick={this.fetchTag} handleAll={() =>{this.fetchAllEvents(); this.nextResults()}} handlePlaces={() =>{this.fetchAllPlaces(); this.nextResults()}} handleActivities={() =>{this.fetchAllActivities(); this.nextResults()}}/>
         <div className="mt-4">
-          <div className="flex-container"> {events} </div>
-          {this.state.isloaded ? (
-            <Row className="justify-content-center">
-            <Search icon="fa fa-arrow-left" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
-            <Search  icon="fa fa-arrow-right" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
-            </Row>
-          ) : (
-            <div className="carousel">
-            <ControlledCarousel carouselItems={carousels} type={this.state.type}/>
-            </div>
-          )}
+        <div className="flex-container"> {events} </div>
+        {this.state.isloaded ? (
+          <Row className="justify-content-center">
+          <Search icon="fa fa-arrow-left" handleClick={() => this.prevResults()}  handleChange={this.state.isprevdisabled}/>
+          <Search  icon="fa fa-arrow-right" handleClick={() => this.nextResults()} handleChange={this.state.isnextdisabled}/>
+          </Row>
+        ) : (
+          <div className="carousel">
+          <ControlledCarousel carouselItems={carousels} type={this.state.type}/>
+          </div>
+        )}
         </div>
         <FooterPagePro />
         </div>
