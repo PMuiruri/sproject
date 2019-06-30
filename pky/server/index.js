@@ -17,6 +17,7 @@ const getAllEvents = () => {
 //function to get all events from the api
 const getAllPlaces = () => {
   try {
+    console.log("http://open-api.myhelsinki.fi/v1/places/?limit=100");
     return axios
       .get("http://open-api.myhelsinki.fi/v1/places/?limit=100")
       .then(response => CircularJSON.stringify(response.data));
@@ -27,6 +28,7 @@ const getAllPlaces = () => {
 //function to get all events from the api
 const getAllActivities = () => {
   try {
+    console.log("http://open-api.myhelsinki.fi/v1/activities/?limit=100");
     return axios
       .get("http://open-api.myhelsinki.fi/v1/activities/?limit=100")
       .then(response => CircularJSON.stringify(response.data));
