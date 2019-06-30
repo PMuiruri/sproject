@@ -15,11 +15,11 @@ const getAllEvents = () => {
   }
 };
 //function to get all events from the api
-const getAllPlaces = () => {
+const getAllPlaces = (api) => {
   try {
-    console.log("http://open-api.myhelsinki.fi/v1/places/?limit=100");
+    console.log(`http://open-api.myhelsinki.fi/v1/${api}/?limit=100`);
     return axios
-      .get("http://open-api.myhelsinki.fi/v1/places/?limit=100")
+      .get(`http://open-api.myhelsinki.fi/v1/${api}/?limit=100`)
       .then(response => CircularJSON.stringify(response.data));
   } catch (error) {
     console.error("Axios error: " + error);
@@ -88,8 +88,9 @@ app.get("/events", async (req, res, next) => {
   }
 });
 app.get("/places", async (req, res, next) => {
+  console.log("Query " + req.query.api);
   try {
-    const events = await getAllPlaces();
+    const events = await getAllPlaces(req.query.api);
     res.header("Access-Control-Allow-Origin", "*");
     res.json(JSON.parse(events));
   } catch (error) {

@@ -154,9 +154,8 @@ class Display extends Component {
       };
 //function to load data at the beginning of the app
   componentDidMount() {
-    this.fetchAllPlaces();
+    this.fetchAllEvents();
   }
-
   render() {
     var carousels = [];
     var events = [];
@@ -197,7 +196,7 @@ class Display extends Component {
         <div className="wrapper">
         <Header />
         <Input id="event" placeholder="Search Events" options={tagArray} handleChange={this.fetchTag} handleLocationChange={this.fetchLocation}/>
-        <Links handleClick={this.fetchTag} handleAll={() => this.nextResults()} handlePlaces ={() =>this.nextResults()}/>
+        <Links handleClick={this.fetchTag} handleAll={() =>{this.fetchAllEvents(); this.nextResults()}} handlePlaces={() =>{this.fetchAllPlaces(); this.nextResults()}} handleActivities={() =>{this.fetchAllActivities(); this.nextResults()}}/>
         <div className="mt-4">
           <div className="flex-container"> {events} </div>
           {this.state.isloaded ? (
