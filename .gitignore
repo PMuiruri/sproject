@@ -63,3 +63,4 @@ typings/
 #security certificate and key
 *.cert
 *.key
+/node_modules
