@@ -58,7 +58,7 @@ class ControlledCarousel extends React.Component {
                           ? <p>Events {event.event_dates.starting_day}</p>
                           : ( this.props.type === "places"
                           ? <p>{event.opening_hours.hours[0].opens}</p>
-                          : <p>{event.where_when_duration.where_and_when}</p>
+                          : <p>{}</p>
                         )
                       }
                       </Carousel.Caption>
