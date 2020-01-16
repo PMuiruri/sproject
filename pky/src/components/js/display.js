@@ -102,7 +102,7 @@ class Display extends Component {
       long = "25.040070";
     }
     console.log("react " + lat, long);
-    fetch(`/location?lat=${lat}&long=${long}`)
+    fetch(`http://localhost:3030/location?lat=${lat}&long=${long}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data });
@@ -114,7 +114,7 @@ class Display extends Component {
   fetchTag = e => {
     let tag = e.target.value;
     console.log("react " + e.target.value);
-    fetch(`/tags?tag=${tag}`)
+    fetch(`http://localhost:3030/tags?tag=${tag}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data, isloaded: true });
@@ -124,10 +124,11 @@ class Display extends Component {
   };
   // function to fetch all events
   fetchAllEvents = () => {
-    fetch("/events")
+    fetch("http://localhost:3030/events")
       .then(response => response.json())
       .then(data => {
         this.setState({ data: data, tags: Object.values(data.tags) });
+        console.log(data);
       })
       .catch(error => console.log(error));
   };

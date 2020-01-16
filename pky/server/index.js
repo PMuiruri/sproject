@@ -1,13 +1,8 @@
 const express = require("express");
-const fs = require("fs");
-const https = require("https");
 const app = express();
-const port = 3000;
-const path = require("path");
+const port = 3030;
 const axios = require("axios");
 const CircularJSON = require("circular-json");
-
-app.use(express.static(path.join(__dirname, "../build")));
 
 const getAllEvents = () => {
   try {
@@ -21,6 +16,7 @@ const getAllEvents = () => {
 const getTagSearch = tag => {
   try {
     console.log(`http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}`);
+
     return axios
       .get(
         `http://open-api.myhelsinki.fi/v1/events/?tags_search=${tag}&limit=100`
@@ -44,18 +40,6 @@ const getLocation = (lat, long) => {
     console.error("Axios error: " + error);
   }
 };
-// const getLocality =(locality)=>{
-//   try {
-//     return axios
-//       .get(`http://open-api.myhelsinki.fi/v1/events/`)
-//       .then(response => {response.filter(data =>{
-//           return data.data.location.address.locality === locality;
-//         })
-//         CircularJSON.stringify(response.data)})
-//   } catch (error) {
-//     console.error("Axios error: " + error);
-//   }
-// };
 
 app.get("/events", async (req, res, next) => {
   try {
@@ -90,19 +74,6 @@ app.get("/location", async (req, res, next) => {
   }
 });
 
-app.get("/*", function(req, res) {
-  res.sendFile(path.join(__dirname, "../build", "index.html"));
+app.listen(port, function() {
+  console.log(`app listening on port ${port} Go to https://localhost:${port}/`);
 });
-https
-  .createServer(
-    {
-      key: fs.readFileSync("server.key"),
-      cert: fs.readFileSync("server.cert")
-    },
-    app
-  )
-  .listen(port, function() {
-    console.log(
-      `app listening on port ${port} Go to https://localhost:${port}/`
-    );
-  });
